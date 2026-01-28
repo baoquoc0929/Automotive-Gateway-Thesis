@@ -1,0 +1,48 @@
+# Keil uVision
+# http://www.keil.com/support/man/docs/uv4/uv4_b_filetypes.htm
+
+# build products
+*.bak
+*.ddk
+*.edk
+*.lst
+*.lnp
+*.mpf
+*.mpj
+*.obj
+*.omf
+*.plg
+*.rpt
+*.sct
+*.tmp
+*.map
+*.iex
+*.htm
+*.sfr
+*.hex
+*.bin
+*.elf
+*.axf
+*.out
+JLinkLog.txt
+
+# internal backup folders
+backup/
+Debug/
+Release/
+listings/
+objects/
+Listings/
+Objects/
+
+# uVision4 project files
+*.uvguix.*
+*.uvopt
+*.uvproj
+*.uvwave
+
+# uVision5 project files
+*.uvguix.*
+*.uvoptx
+*.uvprojx
+RTE/
