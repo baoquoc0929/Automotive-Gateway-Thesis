@@ -44,3 +44,5 @@ gateway_ecu\main.o: ../Core/Inc/spi.h
 gateway_ecu\main.o: ../Core/Inc/usart.h
 gateway_ecu\main.o: ../USB_HOST/App/usb_host.h
 gateway_ecu\main.o: ../Core/Inc/gpio.h
+gateway_ecu\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+gateway_ecu\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
