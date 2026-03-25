@@ -33,3 +33,6 @@ nodea_sensor\main.o: ../Core/Inc/can.h
 nodea_sensor\main.o: ../Core/Inc/tim.h
 nodea_sensor\main.o: ../Core/Inc/usart.h
 nodea_sensor\main.o: ../Core/Inc/gpio.h
+nodea_sensor\main.o: .\DeviceDrivers\Inc\hcsr04.h
+nodea_sensor\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+nodea_sensor\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

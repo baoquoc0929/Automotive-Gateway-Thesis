@@ -26,7 +26,12 @@ nodeb_actuator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.
 nodeb_actuator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h
 nodeb_actuator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
 nodeb_actuator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
+nodeb_actuator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
+nodeb_actuator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
 nodeb_actuator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 nodeb_actuator\main.o: ../Core/Inc/can.h
+nodeb_actuator\main.o: ../Core/Inc/tim.h
 nodeb_actuator\main.o: ../Core/Inc/usart.h
 nodeb_actuator\main.o: ../Core/Inc/gpio.h
+nodeb_actuator\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+nodeb_actuator\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

@@ -60,6 +60,7 @@ typedef enum
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+
 /* USER CODE BEGIN PV */
 
 /* CAN Transmission variables (To send commands to Node B) */

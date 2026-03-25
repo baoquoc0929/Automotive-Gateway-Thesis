@@ -166,8 +166,8 @@ int main(void)
 			if (HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox) == HAL_OK)
       {
         /* Debug: Print transmission status to UART */
-//        sprintf(uart_buf, "CAN Sent: ID=0x%lX, Dist=%d cm\r\n", (unsigned long)TxHeader.StdId, dist_cm);
-//        HAL_UART_Transmit(&huart1, (uint8_t*)uart_buf, strlen(uart_buf), 100);
+        sprintf(uart_buf, "CAN Sent: ID=0x%lX, Dist=%d cm\r\n", (unsigned long)TxHeader.StdId, dist_cm);
+        HAL_UART_Transmit(&huart1, (uint8_t*)uart_buf, strlen(uart_buf), 100);
 				
 				/* Toggle On-board LED to indicate successful transmission */
         HAL_GPIO_TogglePin(LED_NOTICE_GPIO_Port, LED_NOTICE_Pin);

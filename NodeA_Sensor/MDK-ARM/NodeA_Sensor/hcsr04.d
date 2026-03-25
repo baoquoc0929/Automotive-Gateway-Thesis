@@ -1,5 +1,5 @@
 nodea_sensor\hcsr04.o: DeviceDrivers\Src\hcsr04.c
-nodea_sensor\hcsr04.o: ./DeviceDrivers/Inc/hcsr04.h
+nodea_sensor\hcsr04.o: .\DeviceDrivers\Inc\hcsr04.h
 nodea_sensor\hcsr04.o: ../Core/Inc/main.h
 nodea_sensor\hcsr04.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
 nodea_sensor\hcsr04.o: ../Core/Inc/stm32f1xx_hal_conf.h
