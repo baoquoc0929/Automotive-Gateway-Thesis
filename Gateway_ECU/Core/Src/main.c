@@ -19,11 +19,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "can.h"
-#include "i2c.h"
-#include "i2s.h"
-#include "spi.h"
+#include "lwip.h"
 #include "usart.h"
-#include "usb_host.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -49,8 +46,6 @@ typedef enum
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define LED_RX_PIN 		((uint16_t)0x3000)
-#define LED_TX_PIN 		((uint16_t)0xC000)
 
 /* USER CODE END PD */
 
@@ -80,13 +75,20 @@ uint8_t previous_level = 255;
 /* UART Debug (Optional if you already used printf retargeting) */
 char uart_buf[100]; 
 
+/* 0: Auto (Sensor), 1: Manual (Ethernet/PC) */
+uint8_t control_mode = 0;
+
+uint32_t last_manual_time = 0;  /* Luu th?i di?m cu?i c�ng nh?n l?nh t? PC */
+const uint32_t MANUAL_TIMEOUT = 5000; /* 5 gi�y - Th?i gian ch? d? quay l?i Auto */
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-void MX_USB_HOST_Process(void);
-
 /* USER CODE BEGIN PFP */
+/* Private function prototypes */
+void Gateway_UDP_Receiver_Init(void);  /* Add this prototype here */
+void Gateway_Send_UDP(uint16_t dist_cm); /* Should add this too for safety */
 
 /* USER CODE END PFP */
 
@@ -114,52 +116,39 @@ void Handle_Distance(uint16_t dist)
     } 
 }
 
-///* Individual LED Control Functions */
-//void Led_Safe()
-//{
-//	HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_SET);
-//}
+/**
+  * @brief  Turn on the corresponding LED on the F4 Discovery board 
+  *         based on the current safety level.
+  *         LD4 (Green)  : Safe
+  *         LD6 (Blue)   : Caution
+  *         LD3 (Orange) : Warning
+  *         LD5 (Red)    : Danger
+  */
+void Update_Warning_Leds(void)
+{
+    /* 1. First, turn OFF all 4 LEDs to clear the previous state */
+    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15, GPIO_PIN_RESET);
 
-//void Led_Caution()
-//{
-//	HAL_GPIO_WritePin(LD6_GPIO_Port, LD6_Pin, GPIO_PIN_SET);
-//}
-
-//void Led_Warning()
-//{
-//	HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_SET);
-//}
-
-//void Led_Danger()
-//{
-//	HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, GPIO_PIN_SET);
-//}
-
-///**
-//  * @brief  Refresh LED status based on the calculated current_level
-//  */
-//void Update_Warning_Leds(void)
-//{
-//    /* Reset all warning LEDs first to ensure only one is active */
-//    HAL_GPIO_WritePin(GPIOD, LD4_Pin | LD3_Pin | LD5_Pin | LD6_Pin, GPIO_PIN_RESET);
-
-//    /* Activate the correct LED based on current_level */
-//    switch(current_level)
-//    {
-//        case LEVEL_SAFE:
-//            Led_Safe();
-//            break;
-//        case LEVEL_CAUTION:
-//            Led_Caution();
-//            break;
-//        case LEVEL_WARNING:
-//            Led_Warning();
-//            break;
-//        case LEVEL_DANGER:
-//            Led_Danger();
-//            break;
-//    }
-//}
+    /* 2. Turn ON only the LED that matches the current level */
+    /* Note: current_level or current_warning_level is the variable you used to store 0-3 */
+    switch (current_level) 
+    {
+        case 0: /* SAFE */
+            HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_SET); /* Green LED (LD4) */
+            break;
+        case 1: /* CAUTION */
+            HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_SET); /* Blue LED (LD6) */
+            break;
+        case 2: /* WARNING */
+            HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_SET); /* Orange LED (LD3) */
+            break;
+        case 3: /* DANGER */
+            HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_SET); /* Red LED (LD5) */
+            break;
+        default:
+            break;
+    }
+}
 
 /* USER CODE END 0 */
 
@@ -193,12 +182,12 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_CAN1_Init();
-  MX_I2C1_Init();
-  MX_I2S3_Init();
-  MX_SPI1_Init();
-  MX_USART2_UART_Init();
-  MX_USB_HOST_Init();
+  MX_USART3_UART_Init();
+  MX_LWIP_Init();
   /* USER CODE BEGIN 2 */
+	/* Initialize the UDP Listener */
+	Gateway_UDP_Receiver_Init();
+	
 	CAN_FilterTypeDef canfilterconfig;
 
 	/* Configuration for Filter Bank 0 to catch Sensor Data (ID: 0x250) */
@@ -249,36 +238,41 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-    MX_USB_HOST_Process();
 
     /* USER CODE BEGIN 3 */
+		MX_LWIP_Process();
 		
-		/* Process logic and update visual feedback */
-    Handle_Distance(current_distance);
-		
-		/* We only change led state and send a new command to Node B
-				if the warning level has changed.
-       This technique reduces bus traffic (Anti-spamming). */
-		if(current_level != previous_level)
-		{
-			//Update_Warning_Leds();
-			/* Prepare the command message for Node B (ID: 0x450) */
-      TxHeader.StdId = 0x450;
-      TxHeader.DLC = 1; /* We only need 1 byte to send the level (0-3) */
-      TxData[0] = current_level;
-			
-			/* Send the command to CAN bus */
-      if (HAL_CAN_AddTxMessage(&hcan1, &TxHeader, TxData, &TxMailbox) == HAL_OK)
-      {
-				sprintf(uart_buf, "F4 Gateway -> Sending NEW Command: Level %d\r\n", current_level);
-				HAL_UART_Transmit(&huart2, (uint8_t*)uart_buf, strlen(uart_buf), 100);
-	
-				HAL_GPIO_TogglePin(GPIOD, LED_TX_PIN);
+		/* --- STEP 1: CHECK FOR MANUAL TIMEOUT --- */
+    if (control_mode == 1) /* If we are in Manual mode... */
+    {
+        /* If 5 seconds have passed since the last click on PC */
+        if (HAL_GetTick() - last_manual_time > MANUAL_TIMEOUT) 
+        {
+            control_mode = 0; /* Force back to AUTO mode */
+            printf("Gateway -> Manual Timeout! Returning to AUTO Mode...\r\n");
             
-        /* Update previous state to current */
-        previous_level = current_level;
-      }
-		}
+            /* Force an immediate update from sensor logic */
+            previous_level = 255; 
+        }
+    }
+		
+		/* --- STEP 2: AUTO LOGIC --- */
+    if (control_mode == 0) 
+    {
+        Handle_Distance(current_distance);
+        Update_Warning_Leds();
+
+        if (current_level != previous_level)
+        {
+            TxHeader.StdId = 0x450;
+            TxHeader.DLC = 1;
+            TxData[0] = current_level;
+            if (HAL_CAN_AddTxMessage(&hcan1, &TxHeader, TxData, &TxMailbox) == HAL_OK)
+            {
+                previous_level = current_level;
+            }
+        }
+    }
 		
     HAL_Delay(50); /* Small stability delay */
   }
@@ -347,8 +341,53 @@ PUTCHAR_PROTOTYPE
 {
   /* Implementation of putchar: send one character over UART */
   /* Use HAL_MAX_DELAY to ensure the character is fully transmitted */
-  HAL_UART_Transmit(&huart2, (uint8_t *)&ch, 1, HAL_MAX_DELAY); 
+  HAL_UART_Transmit(&huart3, (uint8_t *)&ch, 1, HAL_MAX_DELAY); 
   return ch;
+}
+
+#include "lwip/udp.h"  /* Required for UDP functions */
+#include <string.h>    /* Required for strlen and sprintf */
+
+/**
+  * @brief  Send distance data to PC via UDP
+  * @param  dist_cm: The distance value received from CAN
+  */
+void Gateway_Send_UDP(uint16_t dist_cm)
+{
+    struct udp_pcb *upcb;
+    struct pbuf *p;
+    ip_addr_t DestIPaddr;
+    char msg_buffer[50];
+
+    /* 1. Create a new UDP control block */
+    upcb = udp_new();
+
+    if (upcb != NULL)
+    {
+        /* 2. Configure Destination: PC IP and Port */
+        IP4_ADDR(&DestIPaddr, 192, 168, 1, 100); /* Your PC Static IP */
+
+        /* 3. Format the string message */
+        sprintf(msg_buffer, "Eth Gateway -> CAN Dist: %d cm\r\n", dist_cm);
+
+        /* 4. Allocate a pbuf (packet buffer) to hold the data */
+        p = pbuf_alloc(PBUF_TRANSPORT, strlen(msg_buffer), PBUF_RAM);
+
+        if (p != NULL)
+        {
+            /* 5. Copy the string into the pbuf */
+            pbuf_take(p, msg_buffer, strlen(msg_buffer));
+
+            /* 6. Send the UDP packet to PC on Port 8080 */
+            udp_sendto(upcb, p, &DestIPaddr, 8080);
+
+            /* 7. Free the pbuf - VERY IMPORTANT to avoid memory leaks! */
+            pbuf_free(p);
+        }
+
+        /* 8. Remove the UDP control block after sending */
+        udp_remove(upcb);
+    }
 }
 
 /* Put this inside HAL_CAN_RxFifo0MsgPendingCallback in Gateway code */
@@ -361,17 +400,79 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 		{
       /* Reconstruct the 16-bit distance from 2 bytes (Big Endian) */
       current_distance = (uint16_t)((RxData[0] << 8) | RxData[1]);
-
-      /* Now 'received_dist' contains the distance in cm (e.g., 258) */
-      /* You can now proceed to implement the Warning Logic here */
 			
-			HAL_GPIO_TogglePin(GPIOD, LED_RX_PIN);
-            
-//      /* Debug: Print the received distance to UART */
-//      sprintf(uart_buf, "Gateway Received: Dist = %d cm\r\n", current_distance);
-//      HAL_UART_Transmit(&huart2, (uint8_t*)uart_buf, strlen(uart_buf), 100);
+			/* --- NEW: Send this data to PC via Ethernet! --- */
+      Gateway_Send_UDP(current_distance);
     }
   }
+}
+
+/**
+  * @brief  Callback function called by LwIP when a UDP packet is received
+  */
+void udp_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, const ip_addr_t *addr, u16_t port)
+{
+    if (p != NULL)
+    {
+        uint8_t received_char = *((uint8_t *)p->payload);
+        
+        /* --- NEW: Handle RESTORE AUTO command ('A') --- */
+        if (received_char == 'A' || received_char == 'a') 
+        {
+            control_mode = 0; /* Switch back to AUTO immediately */
+            
+            /* Force an immediate update from sensor data */
+            /* We set this to 255 so the next distance reading will definitely be different */
+            previous_level = 255; 
+            
+            printf("Gateway -> RECEIVED 'A': Manual Override CANCELLED. Auto Mode Active.\r\n");
+        }
+        
+        /* --- Existing Manual Commands ('0' to '3') --- */
+        else if (received_char >= '0' && received_char <= '3') 
+        {
+            control_mode = 1; /* Switch to Manual mode */
+            last_manual_time = HAL_GetTick(); /* Reset the 5s timeout clock */
+            
+            uint8_t cmd_level = received_char - '0';
+            
+            /* Forward manual command to Node B immediately */
+            TxHeader.StdId = 0x450;
+            TxHeader.DLC = 1;
+            TxData[0] = cmd_level;
+            HAL_CAN_AddTxMessage(&hcan1, &TxHeader, TxData, &TxMailbox);
+            
+            printf("Gateway -> MANUAL Override: Level %d (5s Timer started)\r\n", cmd_level);
+        }
+
+        pbuf_free(p); /* Clear buffer */
+    }
+}
+
+/**
+  * @brief  Initialize the UDP Receiver on the Gateway
+  */
+void Gateway_UDP_Receiver_Init(void)
+{
+    struct udp_pcb *upcb;
+
+    /* 1. Create a new UDP control block */
+    upcb = udp_new();
+
+    if (upcb != NULL)
+    {
+        /* 2. Bind the pcb to all local IP addresses and Port 8080 */
+        if (udp_bind(upcb, IP_ADDR_ANY, 8080) == ERR_OK)
+        {
+            /* 3. Register the receive callback function */
+            udp_recv(upcb, udp_receive_callback, NULL);
+            printf("Eth Gateway -> UDP Receiver Initialized on Port 8080\r\n");
+        }
+        else
+        {
+            udp_remove(upcb);
+        }
+    }
 }
 
 /* USER CODE END 4 */

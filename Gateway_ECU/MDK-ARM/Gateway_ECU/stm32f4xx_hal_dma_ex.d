@@ -23,16 +23,10 @@ gateway_ecu\stm32f4xx_hal_dma_ex.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4x
 gateway_ecu\stm32f4xx_hal_dma_ex.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma_ex.h
 gateway_ecu\stm32f4xx_hal_dma_ex.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_cortex.h
 gateway_ecu\stm32f4xx_hal_dma_ex.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_can.h
+gateway_ecu\stm32f4xx_hal_dma_ex.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_eth.h
 gateway_ecu\stm32f4xx_hal_dma_ex.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h
 gateway_ecu\stm32f4xx_hal_dma_ex.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h
 gateway_ecu\stm32f4xx_hal_dma_ex.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h
-gateway_ecu\stm32f4xx_hal_dma_ex.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h
-gateway_ecu\stm32f4xx_hal_dma_ex.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c_ex.h
-gateway_ecu\stm32f4xx_hal_dma_ex.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2s.h
-gateway_ecu\stm32f4xx_hal_dma_ex.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2s_ex.h
 gateway_ecu\stm32f4xx_hal_dma_ex.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 gateway_ecu\stm32f4xx_hal_dma_ex.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
-gateway_ecu\stm32f4xx_hal_dma_ex.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h
 gateway_ecu\stm32f4xx_hal_dma_ex.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
-gateway_ecu\stm32f4xx_hal_dma_ex.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_hcd.h
-gateway_ecu\stm32f4xx_hal_dma_ex.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h
