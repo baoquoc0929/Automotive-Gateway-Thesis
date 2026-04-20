@@ -148,31 +148,31 @@ int main(void)
 //        HAL_Delay(10000); // Tang lên 5ms d? ?n d?nh tru?c khi th? l?i
 //    }
 		
-//		/* Use the highest priority ID in CAN world */
-//    TxHeader.StdId = 0x001; 
-//    TxHeader.DLC = 8;
+		/* Use the highest priority ID in CAN world */
+    TxHeader.StdId = 0x001; 
+    TxHeader.DLC = 8;
 
-//    /* Burst mode: Send 100 messages as fast as possible without any delay */
-//    for(int i = 0; i < 100; i++)
-//    {
-//        if (HAL_CAN_AddTxMessage(&hcan, &TxHeader, JunkData, &TxMailbox) == HAL_OK)
-//        {
-//            msg_sent_count++;
-//        }
-//        else 
-//        {
-//            /* If mailbox full, don't wait, just move on or count error */
-//            error_count++;
-//        }
-//    }
+    /* Burst mode: Send 100 messages as fast as possible without any delay */
+    for(int i = 0; i < 100; i++)
+    {
+        if (HAL_CAN_AddTxMessage(&hcan, &TxHeader, JunkData, &TxMailbox) == HAL_OK)
+        {
+            msg_sent_count++;
+        }
+        else 
+        {
+            /* If mailbox full, don't wait, just move on or count error */
+            error_count++;
+        }
+    }
 
-//    /* ONLY print to UART after a massive amount of messages to save CPU time */
-//    if(msg_sent_count % 5000 == 0) {
-//        printf("STRESS LEVEL MAX -> Sent: %lu\r\n", (unsigned long)msg_sent_count);
-//    }
-//    
-//    /* NO DELAY HERE or just 1ms after 100 messages */
-//    HAL_Delay(1);
+    /* ONLY print to UART after a massive amount of messages to save CPU time */
+    if(msg_sent_count % 5000 == 0) {
+        printf("STRESS LEVEL MAX -> Sent: %lu\r\n", (unsigned long)msg_sent_count);
+    }
+    
+    /* NO DELAY HERE or just 1ms after 100 messages */
+    HAL_Delay(1);
 		
   }
   /* USER CODE END 3 */
