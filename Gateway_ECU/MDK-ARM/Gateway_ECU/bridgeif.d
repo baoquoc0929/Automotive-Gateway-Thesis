@@ -34,6 +34,8 @@ gateway_ecu\bridgeif.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_
 gateway_ecu\bridgeif.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h
 gateway_ecu\bridgeif.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 gateway_ecu\bridgeif.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
+gateway_ecu\bridgeif.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
+gateway_ecu\bridgeif.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 gateway_ecu\bridgeif.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 gateway_ecu\bridgeif.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/debug.h
 gateway_ecu\bridgeif.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/arch.h
@@ -48,7 +50,21 @@ gateway_ecu\bridgeif.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h
 gateway_ecu\bridgeif.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/err.h
 gateway_ecu\bridgeif.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/ethernet.h
 gateway_ecu\bridgeif.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/ieee.h
+gateway_ecu\bridgeif.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/tcpip.h
+gateway_ecu\bridgeif.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/timeouts.h
 gateway_ecu\bridgeif.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/sys.h
+gateway_ecu\bridgeif.o: ../Middlewares/Third_Party/LwIP/system/arch/sys_arch.h
+gateway_ecu\bridgeif.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h
+gateway_ecu\bridgeif.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+gateway_ecu\bridgeif.o: ../Core/Inc/FreeRTOSConfig.h
+gateway_ecu\bridgeif.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+gateway_ecu\bridgeif.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+gateway_ecu\bridgeif.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+gateway_ecu\bridgeif.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+gateway_ecu\bridgeif.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+gateway_ecu\bridgeif.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+gateway_ecu\bridgeif.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+gateway_ecu\bridgeif.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h
 gateway_ecu\bridgeif.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/netif.h
 gateway_ecu\bridgeif.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/ip_addr.h
 gateway_ecu\bridgeif.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/def.h
@@ -69,5 +85,4 @@ gateway_ecu\bridgeif.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/ip
 gateway_ecu\bridgeif.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/etharp.h
 gateway_ecu\bridgeif.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/ethip6.h
 gateway_ecu\bridgeif.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/snmp.h
-gateway_ecu\bridgeif.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/timeouts.h
 gateway_ecu\bridgeif.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

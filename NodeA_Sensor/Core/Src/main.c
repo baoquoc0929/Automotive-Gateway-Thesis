@@ -106,12 +106,12 @@ int main(void)
   /* 2. Configure CAN Filter to "All-Pass" mode (Accept all incoming messages) */
   CAN_FilterTypeDef canfilterconfig;
 
-  canfilterconfig.FilterBank = 0;                         /* Use Filter Bank 0 */
+  canfilterconfig.FilterBank = 0;                        /* Use Filter Bank 0 */
   canfilterconfig.FilterMode = CAN_FILTERMODE_IDMASK;    /* Identifier Mask mode */
   canfilterconfig.FilterScale = CAN_FILTERSCALE_32BIT;   /* 32-bit filter scale */
-  canfilterconfig.FilterIdHigh = 0x0000;                 /* Filter ID High bits */
+  canfilterconfig.FilterIdHigh = 0x25A << 5;             /* Filter ID High bits */
   canfilterconfig.FilterIdLow = 0x0000;                  /* Filter ID Low bits */
-  canfilterconfig.FilterMaskIdHigh = 0x0000;             /* Mask High: 0 means "Don't care" (Accept all) */
+  canfilterconfig.FilterMaskIdHigh = 0x7FF << 5;
   canfilterconfig.FilterMaskIdLow = 0x0000;              /* Mask Low: 0 means "Don't care" (Accept all) */
   canfilterconfig.FilterFIFOAssignment = CAN_RX_FIFO0;   /* Assign accepted messages to FIFO 0 */
   canfilterconfig.FilterActivation = ENABLE;             /* Activate this filter */
@@ -131,7 +131,7 @@ int main(void)
 	}
 
   /* 4. Activate CAN Notification (Interrupt) for RX FIFO 0 */
-  HAL_CAN_ActivateNotification(&hcan, CAN_IT_RX_FIFO0_MSG_PENDING);
+  //HAL_CAN_ActivateNotification(&hcan, CAN_IT_RX_FIFO0_MSG_PENDING);
 
 	/* 5. Prepare CAN TX Header for Distance Data */
   TxHeader.StdId = 0x250;               /* Message ID for Parking Sensor Data */
@@ -171,26 +171,8 @@ int main(void)
 				
 				/* Toggle On-board LED to indicate successful transmission */
         HAL_GPIO_TogglePin(LED_NOTICE_GPIO_Port, LED_NOTICE_Pin);
-            
-//				if (dist_cm < 20)
-//				{
-//					HAL_GPIO_WritePin(LED_SAFE_GPIO_Port, LED_SAFE_Pin, GPIO_PIN_RESET);
-//					HAL_GPIO_TogglePin(LED_WARNING_GPIO_Port, LED_WARNING_Pin);
-//				}
-//				else
-//				{
-//					HAL_GPIO_WritePin(LED_WARNING_GPIO_Port, LED_WARNING_Pin, GPIO_PIN_RESET);
-//					/* Toggle On-board LED to indicate successful transmission */
-//          HAL_GPIO_TogglePin(LED_SAFE_GPIO_Port, LED_SAFE_Pin); 
-//				}
       }
     }
-//    else
-//    {
-//      /* Debug: Notify if the sensor failed to measure (e.g., timeout) */
-//      sprintf(uart_buf, "Sensor Error or Timeout\r\n");
-//      HAL_UART_Transmit(&huart1, (uint8_t*)uart_buf, strlen(uart_buf), 100);
-//    }
 
     /* 5. Wait 100ms before the next measurement (10Hz frequency) */
     HAL_Delay(100);

@@ -36,6 +36,14 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
+/* Define Warning Levels using Enumeration for better readability */
+typedef enum
+{
+    LEVEL_SAFE,
+    LEVEL_CAUTION,
+    LEVEL_WARNING,
+    LEVEL_DANGER,
+} WarningLevel_t;
 
 /* USER CODE END ET */
 

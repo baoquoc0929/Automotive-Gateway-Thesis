@@ -53,6 +53,9 @@ uint32_t            TxMailbox;
 uint32_t            msg_sent_count = 0; /* Counter for sent messages */
 char                uart_buf[100];
 uint32_t error_count = 0;
+uint32_t last_sent_count = 0;
+
+uint32_t last_debug_time = 0;
 
 /* USER CODE END PV */
 
@@ -119,41 +122,14 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-//		uint32_t junk_ids[] = {0x100, 0x300, 0x500};
-//    
-//    for(int i = 0; i < 3; i++)
-//    {
-//        TxHeader.StdId = junk_ids[i];
-//        
-//        if (HAL_CAN_AddTxMessage(&hcan, &TxHeader, JunkData, &TxMailbox) == HAL_OK)
-//        {
-//            msg_sent_count++;
-//            error_count = 0; // Reset error count if one is sent successfully
-//            
-//            if(msg_sent_count % 500 == 0) {
-//                printf("Node C Status: %lu messages sent\r\n", (unsigned long)msg_sent_count);
-//            }
-//        }
-//        else 
-//        {
-//            error_count++;
-//            if(error_count % 100 == 0) {
-//                printf("CAN Error! Total Errors: %lu. Resetting CAN...\r\n", (unsigned long)error_count);
-//                
-//                /* --- AUTO RECOVERY LOGIC --- */
-//                HAL_CAN_Stop(&hcan);  // Stop current CAN
-//                HAL_CAN_Start(&hcan); // Restart CAN to clear error flags
-//            }
-//        }
-//        HAL_Delay(10000); // Tang lên 5ms d? ?n d?nh tru?c khi th? l?i
-//    }
+//		HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+//		HAL_Delay(500);
 		
-		/* Use the highest priority ID in CAN world */
+		/* 1. Setup the highest priority junk frame */
     TxHeader.StdId = 0x001; 
     TxHeader.DLC = 8;
 
-    /* Burst mode: Send 100 messages as fast as possible without any delay */
-    for(int i = 0; i < 100; i++)
+    if (HAL_CAN_GetTxMailboxesFreeLevel(&hcan) > 0)
     {
         if (HAL_CAN_AddTxMessage(&hcan, &TxHeader, JunkData, &TxMailbox) == HAL_OK)
         {
@@ -161,18 +137,33 @@ int main(void)
         }
         else 
         {
-            /* If mailbox full, don't wait, just move on or count error */
             error_count++;
         }
     }
-
-    /* ONLY print to UART after a massive amount of messages to save CPU time */
-    if(msg_sent_count % 5000 == 0) {
-        printf("STRESS LEVEL MAX -> Sent: %lu\r\n", (unsigned long)msg_sent_count);
+    else
+    {
+        error_count++;
     }
-    
-    /* NO DELAY HERE or just 1ms after 100 messages */
-    HAL_Delay(1);
+
+    /* Print to UART and Toggle LED every 1000ms (1 second) */
+    if (HAL_GetTick() - last_debug_time >= 1000)
+    {
+        last_debug_time = HAL_GetTick();
+        
+        /* Calculate messages sent IN THE LAST 1 SECOND */
+        uint32_t pkts_per_sec = msg_sent_count - last_sent_count;
+        
+        printf("STRESS TEST -> Speed: %lu pkts/sec | Mailbox Busy: %lu times\r\n", 
+              (unsigned long)pkts_per_sec, (unsigned long)error_count);
+
+        /* Update the baseline for the next second calculation */
+        last_sent_count = msg_sent_count;
+        
+        /* Reset error_count to see busy times per second (Optional but recommended) */
+        error_count = 0; 
+
+        HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13); 
+    }
 		
   }
   /* USER CODE END 3 */
@@ -228,7 +219,7 @@ void SystemClock_Config(void)
 
 PUTCHAR_PROTOTYPE
 {
-  /* Ð?m b?o dùng dúng b? UART b?n dã c?u hình, ví d? &huart1 */
+  /* ï¿½?m b?o dï¿½ng dï¿½ng b? UART b?n dï¿½ c?u hï¿½nh, vï¿½ d? &huart1 */
   HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, 0xFFFF);
   return ch;
 }

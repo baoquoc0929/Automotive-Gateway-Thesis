@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "cmsis_os.h"
 #include "can.h"
 #include "lwip.h"
 #include "usart.h"
@@ -34,15 +35,6 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
-/* Define Warning Levels using Enumeration for better readability */
-typedef enum
-{
-    LEVEL_SAFE,
-    LEVEL_CAUTION,
-    LEVEL_WARNING,
-    LEVEL_DANGER,
-} WarningLevel_t;
 
 /* USER CODE END PTD */
 
@@ -89,6 +81,7 @@ char uart_buf[100];
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
+void MX_FREERTOS_Init(void);
 /* USER CODE BEGIN PFP */
 /* Private function prototypes */
 void Gateway_UDP_Receiver_Init(void);  /* Add this prototype here */
@@ -98,61 +91,36 @@ void Gateway_Send_UDP(uint16_t dist_cm); /* Should add this too for safety */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
 /**
-  * @brief  Logic to determine warning level based on distance
-  * @param  dist: Distance in cm
+  * @brief  Determine warning level using a smoothed distance value
+  * @param  dist: Raw distance in cm from sensor
   */
+uint16_t filtered_distance = 0;
+
 void Handle_Distance(uint16_t dist)
 {
-    /* Rule: Priority from Danger to Safe */
-    if (dist > 0 && dist <= 20) {
-        current_level = LEVEL_DANGER;    /* Red LED */
-    }
-    else if (dist > 20 && dist <= 50) {
-        current_level = LEVEL_WARNING;   /* Orange LED */
-    }
-    else if (dist > 50 && dist <= 100) {
-        current_level = LEVEL_CAUTION;   /* Blue LED */
-    }
-    else {
-        current_level = LEVEL_SAFE;      /* Green LED */
-    } 
+  /* MOVING AVERAGE FILTER: Retain 70% of previous value, blend with 30% new value */
+  /* This effectively eliminates high-frequency noise and stabilizes the reading */
+  if (filtered_distance == 0) {
+      filtered_distance = dist; /* Initialize filter on first run */
+  }
+  
+  filtered_distance = (filtered_distance * 7 + dist * 3) / 10;
+
+  /* Evaluate safety level using the filtered data rather than raw data */
+  if (filtered_distance > 0 && filtered_distance <= 20) {
+    current_level = LEVEL_DANGER;    /* Red LED */
+  }
+  else if (filtered_distance > 20 && filtered_distance <= 50) {
+    current_level = LEVEL_WARNING;   /* Orange LED */
+  }
+  else if (filtered_distance > 50 && filtered_distance <= 100) {
+    current_level = LEVEL_CAUTION;   /* Blue LED */
+  }
+  else {
+    current_level = LEVEL_SAFE;      /* Green LED */
+  }
 }
-
-///**
-//  * @brief  Turn on the corresponding LED on the F4 Discovery board 
-//  *         based on the current safety level.
-//  *         LD4 (Green)  : Safe
-//  *         LD6 (Blue)   : Caution
-//  *         LD3 (Orange) : Warning
-//  *         LD5 (Red)    : Danger
-//  */
-//void Update_Warning_Leds(void)
-//{
-//    /* 1. First, turn OFF all 4 LEDs to clear the previous state */
-//    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15, GPIO_PIN_RESET);
-
-//    /* 2. Turn ON only the LED that matches the current level */
-//    /* Note: current_level or current_warning_level is the variable you used to store 0-3 */
-//    switch (current_level) 
-//    {
-//        case 0: /* SAFE */
-//            HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_SET); /* Green LED (LD4) */
-//            break;
-//        case 1: /* CAUTION */
-//            HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_SET); /* Blue LED (LD6) */
-//            break;
-//        case 2: /* WARNING */
-//            HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_SET); /* Orange LED (LD3) */
-//            break;
-//        case 3: /* DANGER */
-//            HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_SET); /* Red LED (LD5) */
-//            break;
-//        default:
-//            break;
-//    }
-//}
 
 /* USER CODE END 0 */
 
@@ -187,7 +155,6 @@ int main(void)
   MX_GPIO_Init();
   MX_CAN1_Init();
   MX_USART3_UART_Init();
-  MX_LWIP_Init();
   /* USER CODE BEGIN 2 */
 	/* Initialize the UDP Listener */
 	Gateway_UDP_Receiver_Init();
@@ -239,6 +206,15 @@ int main(void)
 	
   /* USER CODE END 2 */
 
+  /* Init scheduler */
+  osKernelInitialize();  /* Call init function for freertos objects (in cmsis_os2.c) */
+  MX_FREERTOS_Init();
+
+  /* Start scheduler */
+  osKernelStart();
+
+  /* We should never get here as control is now taken by the scheduler */
+
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
@@ -246,43 +222,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-		/* REQUIRED: Handle LwIP background tasks and packet processing */
-		MX_LWIP_Process();
 		
-		/* --- TELEMETRY: Send distance data to PC via UDP --- */
-    /* We process this in the main loop to keep Interrupt duration minimal */
-    if (new_can_data_flag == 1)
-    {
-      Gateway_Send_UDP(current_distance);
-      new_can_data_flag = 0; /* Reset flag after transmission */
-    }
-		
-		/* --- STEP 1: SAFETY CHECK - Manual Mode Timeout --- */
-    if (control_mode == 1) 
-    {
-      /* Return to AUTO mode if no command received within timeout period */
-      if (HAL_GetTick() - last_manual_time > MANUAL_TIMEOUT) 
-      {
-        control_mode = 0; 
-        previous_level = 255; /* Force an update in the next cycle */
-      }
-    }
-		
-    /* --- STEP 2: CONTROL LOGIC - Only runs in AUTO mode --- */
-    if (control_mode == 0) 
-    {
-      Handle_Distance(current_distance);
-
-      /* Only send CAN message if the warning level has changed (Event-driven) */
-      if (current_level != previous_level)
-      {
-				TxData[0] = current_level;
-        if (HAL_CAN_AddTxMessage(&hcan1, &TxHeader, TxData, &TxMailbox) == HAL_OK)
-        {
-           previous_level = current_level; /* Successfully updated */
-        }
-      }
-    }
   }
   /* USER CODE END 3 */
 }
@@ -389,18 +329,21 @@ void Gateway_Send_UDP(uint16_t dist_cm)
 /**
   * @brief  CAN RX Callback - Called when a new message arrives in FIFO0.
   */
+extern osMessageQueueId_t CAN_Data_QueueHandle;
+
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 {
   if (HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &RxHeader, RxData) == HAL_OK)
   {
+		HAL_GPIO_TogglePin(GPIOD, LD4_Pin);
 		/* Filter for Sensor Data from Node A (ID: 0x250) */
     if (RxHeader.StdId == 0x250)
     {
 			/* Reconstruct the 16-bit distance from 2 bytes (Big Endian) */
-      current_distance = (uint16_t)((RxData[0] << 8) | RxData[1]);
+      uint16_t dist_val = (uint16_t)((RxData[0] << 8) | RxData[1]);
 			
-			/* Raise flag for main loop to handle UDP transmission */
-      new_can_data_flag = 1;
+			/* Push raw distance into the queue. Timeout is 0 because this is executed within an ISR */
+			osMessageQueuePut(CAN_Data_QueueHandle, &dist_val, 0, 0);
     }
   }
 }
@@ -452,6 +395,28 @@ void Gateway_UDP_Receiver_Init(void)
 }
 
 /* USER CODE END 4 */
+
+/**
+  * @brief  Period elapsed callback in non blocking mode
+  * @note   This function is called  when TIM5 interrupt took place, inside
+  * HAL_TIM_IRQHandler(). It makes a direct call to HAL_IncTick() to increment
+  * a global variable "uwTick" used as application time base.
+  * @param  htim : TIM handle
+  * @retval None
+  */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+  /* USER CODE BEGIN Callback 0 */
+
+  /* USER CODE END Callback 0 */
+  if (htim->Instance == TIM5)
+  {
+    HAL_IncTick();
+  }
+  /* USER CODE BEGIN Callback 1 */
+
+  /* USER CODE END Callback 1 */
+}
 
 /**
   * @brief  This function is executed in case of error occurrence.

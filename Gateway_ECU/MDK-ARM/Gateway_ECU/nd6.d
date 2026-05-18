@@ -32,6 +32,8 @@ gateway_ecu\nd6.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h
 gateway_ecu\nd6.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h
 gateway_ecu\nd6.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 gateway_ecu\nd6.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
+gateway_ecu\nd6.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
+gateway_ecu\nd6.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 gateway_ecu\nd6.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 gateway_ecu\nd6.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/debug.h
 gateway_ecu\nd6.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/arch.h
