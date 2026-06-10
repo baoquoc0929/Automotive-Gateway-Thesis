@@ -26,11 +26,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "string.h"
-#include "stdio.h"
+#include <stdio.h>     /* Required for printf and sprintf */
+#include <string.h>    /* Required for strlen */
 #include "lwip/udp.h"  /* Required for UDP functions */
-#include <string.h>    /* Required for strlen and sprintf */
-
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -40,84 +38,129 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+/* Network Configuration */
+#define PC_DEST_IP_0            (192)
+#define PC_DEST_IP_1            (168)
+#define PC_DEST_IP_2            (1)
+#define PC_DEST_IP_3            (100)
+#define GATEWAY_UDP_PORT        (8080)
 
+/* CAN Protocol IDs */
+#define CAN_ID_NODE_A_RX        (0x250)
+#define CAN_ID_GATEWAY_APP_TX   (0x450)
+#define CAN_ID_GATEWAY_UDS_TX   (0x7E0)
+#define CAN_ID_NODE_B_UDS_RX    (0x7E8)
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-
+#ifdef __GNUC__
+#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+#else
+#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+#endif /* __GNUC__ */
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+/* CAN Communication Buffers */
+CAN_TxHeaderTypeDef TxHeader;               /**< CAN Tx header structure (To Node B) */
+uint8_t             TxData[8];              /**< CAN Tx payload data array */
+uint32_t            TxMailbox;              /**< CAN Tx mailbox identifier */
 
-/* CAN Transmission variables (To send commands to Node B) */
-CAN_TxHeaderTypeDef TxHeader;
-uint8_t             TxData[8];
-uint32_t            TxMailbox;
+CAN_RxHeaderTypeDef RxHeader;               /**< CAN Rx header structure (From Node A & B) */
+uint8_t             RxData[8];              /**< CAN Rx payload data array */
 
-/* CAN Reception variables (To receive data from Node A) */
-CAN_RxHeaderTypeDef RxHeader;
-uint8_t             RxData[8];
+volatile uint8_t    new_can_data_flag = 0;  /**< Flag indicating new CAN data received */
 
-/* Telemetry & Logic variables */
-uint16_t current_distance = 0;   /* Distance received from Node A (cm) */
-WarningLevel_t current_level;    /* Calculated warning level (0-3) */
-uint8_t previous_level = 255;    /* Memory to detect level changes */
+/* UDS Diagnostic Protocol Variables */
+volatile uint8_t    gateway_uds_flag = 0;   /**< Flag indicating UDS response received */
+uint8_t             gateway_uds_level = 0;  /**< Extracted UDS response payload */
 
-/* Operating Modes */
-uint8_t control_mode = 0;        /* 0: AUTO (Sensor-based), 1: MANUAL (PC-based) */
-uint32_t last_manual_time = 0;   /* Timestamp of last received PC command */
-const uint32_t MANUAL_TIMEOUT = 5000; /* 5 seconds safety timeout */
+/* Telemetry & System Logic Variables */
+uint16_t            current_distance = 0;   /**< Distance received from Node A (cm) */
+WarningLevel_t      current_level;          /**< Calculated warning level (0:Safe -> 3:Danger) */
+uint8_t             previous_level = 255;   /**< Memory to detect level changes (255 = init) */
 
-/* Flags for optimized processing (Non-blocking) */
-volatile uint8_t new_can_data_flag = 0; /* Set in CAN IRQ, processed in main loop */
+uint8_t             control_mode = 0;       /**< 0: AUTO (Sensor), 1: MANUAL (PC-based) */
+uint32_t            last_manual_time = 0;   /**< Timestamp of last received PC command */
+const uint32_t      MANUAL_TIMEOUT = 5000;  /**< 5 seconds safety timeout for manual mode */
 
-/* UART Debug Buffer */
-char uart_buf[100]; 
+/* UART Debugging Buffer */
+char                uart_buf[250];          /**< Buffer for UART transmission */
+
+/* External Variables */
+extern osMessageQueueId_t CAN_Data_QueueHandle;
 
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 void MX_FREERTOS_Init(void);
+
 /* USER CODE BEGIN PFP */
+/**
+ * @brief  Retargets the C library printf function to the USART.
+ * @param[in] ch Character to be transmitted
+ * @return Transmitted character
+ */
+PUTCHAR_PROTOTYPE;
+
 /* Private function prototypes */
-void Gateway_UDP_Receiver_Init(void);  /* Add this prototype here */
-void Gateway_Send_UDP(uint16_t dist_cm); /* Should add this too for safety */
+/**
+ * @brief  Initializes the UDP receiver for Gateway.
+ */
+void Gateway_UDP_Receiver_Init(void);
+
+/**
+ * @brief  Sends distance telemetry over UDP to the PC.
+ * @param[in] dist_cm Distance value in centimeters.
+ */
+void Gateway_Send_UDP(uint16_t dist_cm);
+
+/**
+ * @brief  Formats and sends the UDS acknowledgment level via UDP to the PC.
+ * @param[in] level The UDS response level received from Node B.
+ */
+void Gateway_Send_UDS_UDP(uint8_t level);
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-/**
-  * @brief  Determine warning level using a smoothed distance value
-  * @param  dist: Raw distance in cm from sensor
-  */
-uint16_t filtered_distance = 0;
 
+uint16_t filtered_distance = 0; /**< Filtered distance state for moving average */
+
+/**
+ * @brief  Determine warning level using a smoothed distance value.
+ * @param[in] dist Raw distance in cm from sensor.
+ */
 void Handle_Distance(uint16_t dist)
 {
-  /* MOVING AVERAGE FILTER: Retain 70% of previous value, blend with 30% new value */
-  /* This effectively eliminates high-frequency noise and stabilizes the reading */
-  if (filtered_distance == 0) {
-      filtered_distance = dist; /* Initialize filter on first run */
+  /* Moving average filter: Retain 70% of previous value, blend with 30% new value */
+  if(filtered_distance == 0)
+  {
+    filtered_distance = dist; 
   }
   
   filtered_distance = (filtered_distance * 7 + dist * 3) / 10;
 
-  /* Evaluate safety level using the filtered data rather than raw data */
-  if (filtered_distance > 0 && filtered_distance <= 20) {
+  /* Evaluate safety level using the filtered data */
+  if(filtered_distance > 0 && filtered_distance <= 20)
+  {
     current_level = LEVEL_DANGER;    /* Red LED */
   }
-  else if (filtered_distance > 20 && filtered_distance <= 50) {
+  else if(filtered_distance > 20 && filtered_distance <= 50) 
+  {
     current_level = LEVEL_WARNING;   /* Orange LED */
   }
-  else if (filtered_distance > 50 && filtered_distance <= 100) {
+  else if(filtered_distance > 50 && filtered_distance <= 100)
+  {
     current_level = LEVEL_CAUTION;   /* Blue LED */
   }
-  else {
+  else
+  {
     current_level = LEVEL_SAFE;      /* Green LED */
   }
 }
@@ -155,55 +198,48 @@ int main(void)
   MX_GPIO_Init();
   MX_CAN1_Init();
   MX_USART3_UART_Init();
-  /* USER CODE BEGIN 2 */
-	/* Initialize the UDP Listener */
-	Gateway_UDP_Receiver_Init();
-	
-	CAN_FilterTypeDef canfilterconfig;
+/* USER CODE BEGIN 2 */
 
-	/* Configuration for Filter Bank 0 to catch Sensor Data (ID: 0x250) */
-	canfilterconfig.FilterBank = 0;                         /* Use Filter Bank 0 */
-	canfilterconfig.FilterMode = CAN_FILTERMODE_IDMASK;    /* Use Mask mode for flexibility */
-	canfilterconfig.FilterScale = CAN_FILTERSCALE_32BIT;   /* 32-bit scale for standard/extended ID */
+  CAN_FilterTypeDef canfilterconfig;
 
-	/* Target ID: 0x250 shifted left by 5 bits to align with STM32 register map */
-	canfilterconfig.FilterIdHigh = 0x250 << 5;             
-	canfilterconfig.FilterIdLow = 0x0000;
+  canfilterconfig.FilterBank = 0;
+  canfilterconfig.FilterMode = CAN_FILTERMODE_IDLIST;   
+  canfilterconfig.FilterScale = CAN_FILTERSCALE_16BIT;
 
-	/* Mask: 0x7FF means we care about all 11 bits of the Standard ID */
-	canfilterconfig.FilterMaskIdHigh = 0x7FF << 5;         
-	canfilterconfig.FilterMaskIdLow = 0x0000;
+  /* Accept Node A (0x250) and Node B UDS Response (0x7E8) */
+  canfilterconfig.FilterIdHigh = 0x250 << 5;            
+  canfilterconfig.FilterIdLow = 0x7E8 << 5;             
 
-	canfilterconfig.FilterFIFOAssignment = CAN_RX_FIFO0;   /* Direct accepted messages to FIFO 0 */
-	canfilterconfig.FilterActivation = ENABLE;             /* Enable this filter bank */
-	canfilterconfig.SlaveStartFilterBank = 14;             /* Reserved for CAN2 (if used) */
+  /* Duplicate IDs to safely fill all 16-bit register slots */
+  canfilterconfig.FilterMaskIdHigh = 0x250 << 5; 
+  canfilterconfig.FilterMaskIdLow = 0x7E8 << 5;  
 
-	/* Apply filter configuration to CAN1 */
-	if (HAL_CAN_ConfigFilter(&hcan1, &canfilterconfig) != HAL_OK)
-	{
-    /* Filter configuration Error */
+  canfilterconfig.FilterFIFOAssignment = CAN_RX_FIFO0;
+  canfilterconfig.FilterActivation = ENABLE;
+  canfilterconfig.SlaveStartFilterBank = 14;
+
+  if (HAL_CAN_ConfigFilter(&hcan1, &canfilterconfig) != HAL_OK)
+  {
     Error_Handler();
-	}
-	
-	/* Start CAN1 peripheral */
+  }
+
   if (HAL_CAN_Start(&hcan1) != HAL_OK)
   {
     Error_Handler();
   }
-	
-	/* Enable Notifications for RX FIFO 0 message pending interrupt */
+
   if (HAL_CAN_ActivateNotification(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING) != HAL_OK)
   {
     Error_Handler();
   }
-	
-	/* Prepare CAN TX Header */
-	TxHeader.StdId = 0x450;
+
+  /* Prepare default CAN TX Header */
+  TxHeader.StdId = 0x450;
   TxHeader.RTR = CAN_RTR_DATA;
   TxHeader.IDE = CAN_ID_STD;
   TxHeader.DLC = 1;
   TxHeader.TransmitGlobalTime = DISABLE;
-	
+
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -273,125 +309,191 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-///**
-//  * @brief  Retargets the C library printf function to the USART.
-//  * @param  ch: Character to be transmitted
-//  * @retval The character transmitted
-//  */
-//#ifdef __GNUC__
-///* With GCC, small printf (option LD Linker->Libraries->Small printf set to 'Yes') calls __io_putchar() */
-//#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
-//#else
-//#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
-//#endif /* __GNUC__ */
-
-//PUTCHAR_PROTOTYPE
-//{
-//  /* Implementation of putchar: send one character over UART */
-//  /* Use HAL_MAX_DELAY to ensure the character is fully transmitted */
-//  HAL_UART_Transmit(&huart3, (uint8_t *)&ch, 1, HAL_MAX_DELAY); 
-//  return ch;
-//}
 
 /**
-  * @brief  Constructs and sends a UDP packet containing distance data to PC.
-  * @param  dist_cm: Sensor value to be transmitted.
-  */
-void Gateway_Send_UDP(uint16_t dist_cm)
+ * @brief  Retargets the C library printf function to the USART.
+ *
+ * @param[in]  ch  Character to be transmitted
+ *
+ * @return 
+ * - Transmitted character
+ */
+PUTCHAR_PROTOTYPE
 {
-  struct udp_pcb *upcb;
-  struct pbuf *p;
-  ip_addr_t DestIPaddr;
-  char msg_buffer[50];
+  /* Timeout lowered to 10ms to prevent system hang */
+  HAL_UART_Transmit(&huart3, (uint8_t *)&ch, 1, 10); 
+  return ch;
+}
 
-	/* Create a new UDP control block */
-  upcb = udp_new();
-	
+/**
+ * @brief  Helper function to send a raw string via UDP.
+ *
+ * @param[in]  msg_string  Pointer to the null-terminated string to send.
+ *
+ * @return None
+ */
+void UDP_Send_String(const char *msg_string)
+{
+  struct udp_pcb *upcb = udp_new();
   if (upcb != NULL)
   {
-		/* Destination PC IP Address */
-    IP4_ADDR(&DestIPaddr, 192, 168, 1, 100); 
+    ip_addr_t DestIPaddr;
+    IP4_ADDR(&DestIPaddr, PC_DEST_IP_0, PC_DEST_IP_1, PC_DEST_IP_2, PC_DEST_IP_3); 
 
-    /* Format string for Python App parsing: "Dist: X cm" */
-    sprintf(msg_buffer, "Dist: %d cm\r\n", dist_cm);
-
-    p = pbuf_alloc(PBUF_TRANSPORT, strlen(msg_buffer), PBUF_RAM);	
+    struct pbuf *p = pbuf_alloc(PBUF_TRANSPORT, strlen(msg_string), PBUF_RAM);  
     if (p != NULL)
     {
-      pbuf_take(p, msg_buffer, strlen(msg_buffer));
-      udp_sendto(upcb, p, &DestIPaddr, 8080);
+      pbuf_take(p, msg_string, strlen(msg_string));
+      udp_sendto(upcb, p, &DestIPaddr, GATEWAY_UDP_PORT);
       pbuf_free(p);
     }
-    udp_remove(upcb); /* Release UDP control block */
+    udp_remove(upcb); 
   }
 }
 
 /**
-  * @brief  CAN RX Callback - Called when a new message arrives in FIFO0.
-  */
-extern osMessageQueueId_t CAN_Data_QueueHandle;
+ * @brief  Formats and sends the distance telemetry via UDP to the PC.
+ *
+ * @param[in]  dist_cm  Distance value in centimeters.
+ *
+ * @return None
+ */
+void Gateway_Send_UDP(uint16_t dist_cm)
+{
+  char msg_buffer[50];
+  sprintf(msg_buffer, "Dist: %d cm\r\n", dist_cm);
+  UDP_Send_String(msg_buffer);
+}
 
+/**
+ * @brief  Formats and sends the UDS acknowledgment level via UDP to the PC.
+ *
+ * @param[in]  level  The UDS response level received from Node B.
+ *
+ * @return None
+ */
+void Gateway_Send_UDS_UDP(uint8_t level)
+{
+  char msg_buffer[50];
+  sprintf(msg_buffer, "UDS_ACK:%d\r\n", level); 
+  UDP_Send_String(msg_buffer);
+}
+
+/**
+ * @brief  CAN RX Callback - Triggered when a new message arrives in FIFO0.
+ *
+ * @param[in]  hcan  Pointer to a CAN_HandleTypeDef structure that contains
+ * the configuration information for the specified CAN.
+ *
+ * @return None
+ */
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 {
   if (HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &RxHeader, RxData) == HAL_OK)
   {
-		HAL_GPIO_TogglePin(GPIOD, LD4_Pin);
-		/* Filter for Sensor Data from Node A (ID: 0x250) */
-    if (RxHeader.StdId == 0x250)
+    /* Branch 1: Sensor Data from Node A */
+    if (RxHeader.StdId == CAN_ID_NODE_A_RX)
     {
-			/* Reconstruct the 16-bit distance from 2 bytes (Big Endian) */
       uint16_t dist_val = (uint16_t)((RxData[0] << 8) | RxData[1]);
 			
-			/* Push raw distance into the queue. Timeout is 0 because this is executed within an ISR */
-			osMessageQueuePut(CAN_Data_QueueHandle, &dist_val, 0, 0);
+      /* Push raw distance into the queue. Timeout is 0 because this is inside ISR */
+      osMessageQueuePut(CAN_Data_QueueHandle, &dist_val, 0, 0);
+    }
+    /* Branch 2: UDS Response from Node B */
+    else if (RxHeader.StdId == CAN_ID_NODE_B_UDS_RX)
+    {
+      gateway_uds_flag = 1;
+      gateway_uds_level = RxData[1]; 
     }
   }
 }
 
 /**
-  * @brief  Callback function called by LwIP when a UDP packet is received
-  */
+ * @brief  LwIP UDP RX Callback - Triggered when a PC command arrives via Ethernet.
+ *
+ * @param[in]  arg   User supplied argument (not used).
+ * @param[in]  upcb  The UDP protocol control block.
+ * @param[in]  p     The packet buffer containing the received data.
+ * @param[in]  addr  The IP address of the sender.
+ * @param[in]  port  The port number of the sender.
+ *
+ * @attention  Must call pbuf_free(p) at the end to prevent memory leaks in LwIP.
+ *
+ * @return None
+ */
 void udp_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, const ip_addr_t *addr, u16_t port)
 {
   if (p != NULL)
   {
-    uint8_t received_char = *((uint8_t *)p->payload);
+    uint8_t *payload = (uint8_t *)p->payload;
+    uint8_t received_char = payload[0];
         
-    /* Command '0'-'3': Activate MANUAL Mode and forward to Node B */
+    /* Branch 1: MANUAL Mode Control ('0'-'3') */
     if (received_char >= '0' && received_char <= '3') 
     {
       control_mode = 1; 
-      last_manual_time = HAL_GetTick(); /* Reset timeout timer */
+      last_manual_time = HAL_GetTick(); 
             
-      TxHeader.StdId = 0x450;
+      TxHeader.StdId = CAN_ID_GATEWAY_APP_TX;
       TxHeader.DLC = 1;
       TxData[0] = received_char - '0';
+      
+      if (HAL_CAN_GetTxMailboxesFreeLevel(&hcan1) == 0) {
+          HAL_CAN_AbortTxRequest(&hcan1, CAN_TX_MAILBOX0 | CAN_TX_MAILBOX1 | CAN_TX_MAILBOX2);
+      }
       HAL_CAN_AddTxMessage(&hcan1, &TxHeader, TxData, &TxMailbox);
     }
-    /* Command 'A': Manually restore AUTO Mode */
+    /* Branch 2: Restore AUTO Mode ('A' or 'a') */
     else if (received_char == 'A' || received_char == 'a')
     {
       control_mode = 0;
-      previous_level = 255; /* Force immediate update */
+      previous_level = 255; 
     }
-        
-    pbuf_free(p); /* MANDATORY: Release buffer after processing */
+    /* Branch 3: DoIP Request Decoder (Ver 0x02, Inv 0xFD, Type 0x80 0x01) */
+    else if (p->len >= 10 && payload[0] == 0x02 && payload[1] == 0xFD && payload[2] == 0x80 && payload[3] == 0x01)
+    {
+      uint8_t uds_service = payload[8];
+      uint8_t uds_subfunc = payload[9];
+
+      TxHeader.StdId = CAN_ID_GATEWAY_UDS_TX; 
+      TxHeader.DLC = 8;
+      
+      TxData[0] = 0x02;        
+      TxData[1] = uds_service; 
+      TxData[2] = uds_subfunc; 
+      TxData[3] = 0x55;        
+      TxData[4] = 0x55; 
+      TxData[5] = 0x55; 
+      TxData[6] = 0x55; 
+      TxData[7] = 0x55;
+
+      if (HAL_CAN_GetTxMailboxesFreeLevel(&hcan1) == 0) {
+          HAL_CAN_AbortTxRequest(&hcan1, CAN_TX_MAILBOX0 | CAN_TX_MAILBOX1 | CAN_TX_MAILBOX2);
+      }
+      HAL_CAN_AddTxMessage(&hcan1, &TxHeader, TxData, &TxMailbox);
+      
+      printf("\r\n[GATEWAY] GIAI MA DoIP THANH CONG! Phat UDS %02X %02X xuong Node B.\r\n", uds_service, uds_subfunc);
+    }
+
+    pbuf_free(p); 
   }
 }
 
 /**
-  * @brief  Initialize UDP Listener for incoming PC commands.
-  */
+ * @brief  Initializes the UDP Listener for incoming PC commands.
+ *
+ * @return None
+ */
 void Gateway_UDP_Receiver_Init(void)
 {
-    struct udp_pcb *upcb = udp_new();
-    if (upcb != NULL)
+  struct udp_pcb *upcb = udp_new();
+  if (upcb != NULL)
+  {
+    if (udp_bind(upcb, IP_ADDR_ANY, GATEWAY_UDP_PORT) == ERR_OK)
     {
-        if (udp_bind(upcb, IP_ADDR_ANY, 8080) == ERR_OK)
-        {
-            udp_recv(upcb, udp_receive_callback, NULL);
-        }
+      udp_recv(upcb, udp_receive_callback, NULL);
     }
+  }
 }
 
 /* USER CODE END 4 */

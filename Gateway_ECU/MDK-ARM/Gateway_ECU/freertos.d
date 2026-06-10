@@ -44,6 +44,8 @@ gateway_ecu\freertos.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex
 gateway_ecu\freertos.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 gateway_ecu\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h
 gateway_ecu\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h
+gateway_ecu\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+gateway_ecu\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 gateway_ecu\freertos.o: ../Core/Inc/can.h
 gateway_ecu\freertos.o: ../LWIP/App/lwip.h
 gateway_ecu\freertos.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h
@@ -53,7 +55,6 @@ gateway_ecu\freertos.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/arch.h
 gateway_ecu\freertos.o: ../Middlewares/Third_Party/LwIP/system/arch/cc.h
 gateway_ecu\freertos.o: ../Middlewares/Third_Party/LwIP/system/arch/cpu.h
 gateway_ecu\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-gateway_ecu\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 gateway_ecu\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
 gateway_ecu\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
 gateway_ecu\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h

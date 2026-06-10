@@ -25,6 +25,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <stdio.h>     /* Required for printf */
+#include <string.h>    /* Required for strlen */
 #include "can.h"       /* Required for CAN handles and structures */
 #include "lwip.h"      /* Required for LwIP definitions */
 
@@ -47,23 +49,29 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-extern CAN_HandleTypeDef hcan1;
+/* External CAN Variables */
+extern CAN_HandleTypeDef   hcan1;
 extern CAN_TxHeaderTypeDef TxHeader;
-extern uint8_t TxData[8];
-extern uint32_t TxMailbox;
+extern uint8_t             TxData[8];
+extern uint32_t            TxMailbox;
 
-extern uint8_t control_mode;
-extern uint32_t last_manual_time;
-extern const uint32_t MANUAL_TIMEOUT;
+/* External System Logic Variables */
+extern uint8_t             control_mode;
+extern uint32_t            last_manual_time;
+extern const uint32_t      MANUAL_TIMEOUT;
+extern uint8_t             previous_level;
+extern uint8_t             current_level;
+extern uint16_t            filtered_distance;
 
+/* External UDS Variables */
+extern volatile uint8_t    gateway_uds_flag;
+extern uint8_t             gateway_uds_level;
+
+/* External Functions */
 extern void Handle_Distance(uint16_t dist);
-extern uint8_t previous_level;
-extern uint8_t current_level;
-
-extern uint16_t filtered_distance;
-
 extern void Gateway_Send_UDP(uint16_t dist_cm);
 extern void Gateway_UDP_Receiver_Init(void);
+extern void Gateway_Send_UDS_UDP(uint8_t level);
 
 /* USER CODE END Variables */
 /* Definitions for Logic_Task */
@@ -164,15 +172,16 @@ void StartLogicTask(void *argument)
   /* init code for LWIP */
   MX_LWIP_Init();
   /* USER CODE BEGIN StartLogicTask */
-	/* Initialize UDP Receiver here AFTER LwIP core has fully started */
+  
+  /* Initialize UDP Receiver AFTER LwIP core has fully started */
   Gateway_UDP_Receiver_Init();
-	
-	uint16_t received_dist;
-	
+    
+  uint16_t received_dist;
+    
   /* Infinite loop */
   for(;;)
   {
-    /* Task blocks and yields CPU until CAN data is available in the Queue */
+    /* Block and yield CPU until CAN data is available in the Queue */
     if (osMessageQueueGet(CAN_Data_QueueHandle, &received_dist, NULL, osWaitForever) == osOK)
     {
         /* 1. Process AUTO mode logic */
@@ -184,7 +193,15 @@ void StartLogicTask(void *argument)
             /* Send CAN message to Node B only if the warning level has changed */
             if (current_level != previous_level)
             {
+                TxHeader.StdId = 0x450;
+                TxHeader.DLC = 1;
                 TxData[0] = current_level;
+                
+                if (HAL_CAN_GetTxMailboxesFreeLevel(&hcan1) == 0)
+                {
+                    HAL_CAN_AbortTxRequest(&hcan1, CAN_TX_MAILBOX0 | CAN_TX_MAILBOX1 | CAN_TX_MAILBOX2);
+                }
+                
                 if (HAL_CAN_AddTxMessage(&hcan1, &TxHeader, TxData, &TxMailbox) == HAL_OK)
                 {
                     previous_level = current_level;
@@ -194,6 +211,20 @@ void StartLogicTask(void *argument)
 
         /* 2. Forward the filtered distance to the Ethernet Task */
         osMessageQueuePut(Eth_Data_QueueHandle, &filtered_distance, 0, 0);
+    }
+        
+    /* 3. Check for incoming UDS response from Node B */
+    if (gateway_uds_flag == 1)
+    {
+        gateway_uds_flag = 0; /* Clear flag immediately */
+      
+        printf("\r\n=======================================\r\n");
+        printf("[GATEWAY] BAT DUOC PHAN HOI UDS TU NODE B!\r\n");
+        printf("-> ID: 0x7E8 | Muc canh bao nhan duoc: %d\r\n", gateway_uds_level);
+        printf("[GATEWAY] Dang gui goi tin Ethernet len PC...\r\n");
+        printf("=======================================\r\n");
+            
+        Gateway_Send_UDS_UDP(gateway_uds_level);
     }
   }
   /* USER CODE END StartLogicTask */
@@ -209,12 +240,12 @@ void StartLogicTask(void *argument)
 void StartEthTask(void *argument)
 {
   /* USER CODE BEGIN StartEthTask */
-	uint16_t dist_to_send;
-	
+  uint16_t dist_to_send;
+    
   /* Infinite loop */
   for(;;)
   {
-    /* Check Manual Mode Timeout */
+    /* 1. Check Manual Mode Timeout */
     if (control_mode == 1) 
     {
       if (HAL_GetTick() - last_manual_time > MANUAL_TIMEOUT) 
@@ -224,7 +255,7 @@ void StartEthTask(void *argument)
       }
     }
 
-    /* Wait for distance data from Logic Task and send via UDP */
+    /* 2. Wait for distance data from Logic Task and send via UDP */
     if (osMessageQueueGet(Eth_Data_QueueHandle, &dist_to_send, NULL, 10) == osOK)
     {
         Gateway_Send_UDP(dist_to_send);

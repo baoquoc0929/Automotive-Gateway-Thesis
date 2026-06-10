@@ -37,33 +37,45 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define UDS_SERVICE_ECU_RESET    (0x11) /*!< UDS Service ID for ECU Reset */
+#define UDS_SERVICE_IO_CONTROL   (0x2F) /*!< UDS Service ID for Input/Output Control */
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-
+#ifdef __GNUC__
+#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+#else
+#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+#endif /* __GNUC__ */
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-
 /* USER CODE BEGIN PV */
-CAN_RxHeaderTypeDef RxHeader;
-uint8_t RxData[8];
-uint32_t         prev_tick_buzzer = 0; /* Timer for non-blocking buzzer */
+CAN_RxHeaderTypeDef RxHeader;             /**< CAN Rx header structure */
+uint8_t             RxData[8];            /**< CAN Rx payload data array */
 
-/* Logic variables */
-volatile uint8_t new_command_flag = 0;    /* Flag to signal new command arrived */
-uint8_t          cmd_warning_level = 0;   /* 0: Safe, 1: Caution, 2: Warning, 3: Danger */
-uint16_t         buzzer_interval = 0;     /* Beep interval in ms (0 = Off, 1 = Constant On) */
+volatile uint8_t    uds_rx_flag = 0;      /**< Flag indicating a new UDS request was received */
+uint8_t             uds_rx_data[8];       /**< UDS Rx payload data array */
+uint8_t             uds_dlc = 0;          /**< UDS Data Length Code (Payload size) */
 
-char uart_buf[50];
+volatile uint8_t    new_command_flag = 0; /**< Flag indicating a new manual command arrived */
+uint8_t             cmd_warning_level = 0;/**< Warning state -> 0: Safe, 1: Caution, 2: Warning, 3: Danger */
+uint16_t            buzzer_interval = 0;  /**< Buzzer toggle interval in ms (0 = Off, 1 = Constant On) */
+uint32_t            prev_tick_buzzer = 0; /**< Timer tracker for non-blocking buzzer execution */
 
+char                uart_buf[128];        /**< Buffer for UART transmission */
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
+/**
+ * @brief  Retargets the C library printf function to the USART.
+ * @param[in] ch Character to be transmitted
+ * @return Transmitted character
+ */
+PUTCHAR_PROTOTYPE;
 
 /* USER CODE END PFP */
 
@@ -104,39 +116,26 @@ int main(void)
   MX_CAN_Init();
   MX_USART1_UART_Init();
   MX_TIM2_Init();
-  /* USER CODE BEGIN 2 */
-	CAN_FilterTypeDef canfilterconfig;
+	
+	/* USER CODE BEGIN 2 */
+  CAN_FilterTypeDef canfilterconfig;
 
-	canfilterconfig.FilterBank = 0;
-	canfilterconfig.FilterMode = CAN_FILTERMODE_IDMASK;
-	canfilterconfig.FilterScale = CAN_FILTERSCALE_32BIT;
+  canfilterconfig.FilterBank = 0;
+  canfilterconfig.FilterMode = CAN_FILTERMODE_IDLIST;   
+  canfilterconfig.FilterScale = CAN_FILTERSCALE_16BIT;  
 
-	/* Change 0x123 to 0x450 to match Gateway's Command ID */
-	canfilterconfig.FilterIdHigh = 0x450 << 5; 
-	canfilterconfig.FilterIdLow = 0x0000;
+  /* Slot 1: Accept Control Command (0x450) */
+  canfilterconfig.FilterIdHigh = 0x450 << 5; 
+  /* Slot 2: Accept UDS Request (0x7E0) */
+  canfilterconfig.FilterIdLow = 0x7E0 << 5;  
+  
+  /* Slot 3 & 4: Duplicate to safely fill all slots */
+  canfilterconfig.FilterMaskIdHigh = 0x450 << 5; 
+  canfilterconfig.FilterMaskIdLow = 0x7E0 << 5;  
 
-	/* Mask 0x7FF means "Check all 11 bits of the Standard ID" */
-	canfilterconfig.FilterMaskIdHigh = 0x7FF << 5; 
-	canfilterconfig.FilterMaskIdLow = 0x0000;
-
-	canfilterconfig.FilterFIFOAssignment = CAN_RX_FIFO0;
-	canfilterconfig.FilterActivation = ENABLE;
-	canfilterconfig.SlaveStartFilterBank = 14;
-
-	/* Apply configuration */
-	HAL_CAN_ConfigFilter(&hcan, &canfilterconfig);
-
-//CAN_FilterTypeDef canfilterconfig;
-
-//canfilterconfig.FilterBank = 0;
-//canfilterconfig.FilterMode = CAN_FILTERMODE_IDMASK;
-//canfilterconfig.FilterScale = CAN_FILTERSCALE_32BIT;
-//canfilterconfig.FilterIdHigh = 0x0000;      /* Accept any ID */
-//canfilterconfig.FilterIdLow = 0x0000;
-//canfilterconfig.FilterMaskIdHigh = 0x0000;  /* Ignore all bits (All-Pass) */
-//canfilterconfig.FilterMaskIdLow = 0x0000;
-//canfilterconfig.FilterFIFOAssignment = CAN_RX_FIFO0;
-//canfilterconfig.FilterActivation = ENABLE;
+  canfilterconfig.FilterFIFOAssignment = CAN_RX_FIFO0;
+  canfilterconfig.FilterActivation = ENABLE;
+  canfilterconfig.SlaveStartFilterBank = 14;
 
   if (HAL_CAN_ConfigFilter(&hcan, &canfilterconfig) != HAL_OK)
   {
@@ -152,74 +151,116 @@ int main(void)
   {
     Error_Handler();
   }
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
+	/* USER CODE BEGIN WHILE */
+  
+  /* Diagnostic override timer for UDS 0x2F command */
+  uint32_t buzzer_test_timeout = 0; 
+
   while (1)
   {
-    /* USER CODE END WHILE */
+		/* USER CODE END WHILE */
 
-    /* USER CODE BEGIN 3 */
-
-		/* --- STEP 1: PROCESS NEW COMMAND --- */
+		/* USER CODE BEGIN 3 */
+    
+    /* --- STEP 1: PROCESS APPLICATION COMMANDS --- */
     if (new_command_flag)
     {
-        new_command_flag = 0; /* Reset flag */
-        //printf("Node B -> Executing Command Level: %d\r\n", cmd_warning_level);
+      new_command_flag = 0; 
+      HAL_GPIO_WritePin(LED_WORKING_GPIO_Port, LED_WARNING_Pin | LED_SAFETY_Pin, GPIO_PIN_RESET);
 
-				/* Reset all Warning LEDs */
-        HAL_GPIO_WritePin(LED_WORKING_GPIO_Port, LED_WARNING_Pin | LED_SAFETY_Pin, GPIO_PIN_RESET);
+      switch (cmd_warning_level)
+      {
+        case 0: /* SAFE */
+          HAL_GPIO_WritePin(LED_SAFETY_GPIO_Port, LED_SAFETY_Pin, GPIO_PIN_SET);
+          buzzer_interval = 0;                                
+          break;
+        case 1: /* CAUTION */
+          HAL_GPIO_WritePin(LED_SAFETY_GPIO_Port, LED_SAFETY_Pin, GPIO_PIN_SET);
+          HAL_GPIO_WritePin(LED_WARNING_GPIO_Port, LED_WARNING_Pin, GPIO_PIN_SET);
+          buzzer_interval = 500;                              
+          break;
+        case 2: /* WARNING */
+          HAL_GPIO_WritePin(LED_WARNING_GPIO_Port, LED_WARNING_Pin, GPIO_PIN_SET);
+          buzzer_interval = 200;                              
+          break;
+        case 3: /* DANGER */
+          HAL_GPIO_WritePin(LED_WARNING_GPIO_Port, LED_WARNING_Pin, GPIO_PIN_SET);
+          buzzer_interval = 1;                                
+          break;
+      }
+    }
 
-        /* Execute Actions based on Level */
-        switch (cmd_warning_level)
+    /* --- STEP 2: ACTUATOR CONTROL LAYER (OVERRIDE) --- */
+    if (buzzer_test_timeout > 0 && (HAL_GetTick() - buzzer_test_timeout < 2000))
+    {
+      HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_SET); 
+    }
+    else
+    {
+      if (buzzer_test_timeout > 0) buzzer_test_timeout = 0;
+
+      if (buzzer_interval == 0)      HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_RESET); 
+      else if (buzzer_interval == 1) HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_SET);   
+      else
+      {
+        if (HAL_GetTick() - prev_tick_buzzer >= buzzer_interval)
         {
-            case 0: /* SAFE */
-                __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 500);  /* Servo 0 deg */
-                HAL_GPIO_WritePin(LED_SAFETY_GPIO_Port, LED_SAFETY_Pin, GPIO_PIN_SET);/* LED Safety On */
-                buzzer_interval = 0;                                /* Buzzer Off */
-                break;
-
-            case 1: /* CAUTION */
-                __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 1000); /* Servo 45 deg */
-                HAL_GPIO_WritePin(LED_SAFETY_GPIO_Port, LED_SAFETY_Pin, GPIO_PIN_SET);/* LED Warning On */
-								HAL_GPIO_WritePin(LED_WARNING_GPIO_Port, LED_WARNING_Pin, GPIO_PIN_SET);
-                buzzer_interval = 0;                              /* Slow beep */
-                break;
-
-            case 2: /* WARNING */
-                __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 1500); /* Servo 90 deg */
-                HAL_GPIO_WritePin(LED_WARNING_GPIO_Port, LED_WARNING_Pin, GPIO_PIN_SET);
-                buzzer_interval = 200;                              /* Fast beep */
-                break;
-
-            case 3: /* DANGER */
-                __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 2500); /* Servo 180 deg */
-                HAL_GPIO_WritePin(LED_WARNING_GPIO_Port, LED_WARNING_Pin, GPIO_PIN_SET);
-                buzzer_interval = 1;                                /* Constant On */
-                break;
+          HAL_GPIO_TogglePin(BUZZER_GPIO_Port, BUZZER_Pin);              
+          prev_tick_buzzer = HAL_GetTick();                              
         }
+      }
     }
 
-    /* --- STEP 2: NON-BLOCKING BUZZER CONTROL --- */
-    if (buzzer_interval == 0) {
-        HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_RESET); /* Force Off */
-    }
-    else if (buzzer_interval == 1) {
-        HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_SET);   /* Force On */
-    }
-    else {
-        /* Handle blinking (intermittent) beep levels */
-        if (HAL_GetTick() - prev_tick_buzzer >= buzzer_interval) {
-            HAL_GPIO_TogglePin(BUZZER_GPIO_Port, BUZZER_Pin);            /* Toggle Buzzer pin */
-            prev_tick_buzzer = HAL_GetTick();                 /* Update timestamp */
-        }
+    /* --- STEP 3: UDS DIAGNOSTIC SERVICE ROUTER --- */
+    if (uds_rx_flag == 1)
+    {
+      uds_rx_flag = 0;
+      
+      /* Service 0x11: ECU Reset */
+      if (uds_rx_data[1] == UDS_SERVICE_ECU_RESET && uds_rx_data[2] == 0x01)
+      {
+          printf("\r\n[NODE B] Nhan lenh ECU RESET tu Gateway!\r\n");
+
+          CAN_TxHeaderTypeDef UdsTxHeader = {0x7E8, 0, CAN_ID_STD, CAN_RTR_DATA, 8, DISABLE};
+          uint8_t UdsTxData[8] = {0x02, 0x51, 0x01, 0x55, 0x55, 0x55, 0x55, 0x55};
+          uint32_t UdsTxMailbox;
+
+          if (HAL_CAN_GetTxMailboxesFreeLevel(&hcan) == 0) {
+              HAL_CAN_AbortTxRequest(&hcan, CAN_TX_MAILBOX0 | CAN_TX_MAILBOX1 | CAN_TX_MAILBOX2);
+          }
+          HAL_CAN_AddTxMessage(&hcan, &UdsTxHeader, UdsTxData, &UdsTxMailbox);
+
+          printf("[NODE B] Da gui Response. Chuan bi Reset chip...\r\n");
+
+          HAL_Delay(100);     
+          NVIC_SystemReset();  
+      }
+      /* Service 0x2F: IO Control (Test Buzzer) */
+      else if (uds_rx_data[1] == UDS_SERVICE_IO_CONTROL && uds_rx_data[2] == 0x01)
+      {
+          printf("\r\n[NODE B] Nhan lenh IO CONTROL (0x2F)! Ep coi keu 2 giay.\r\n");
+
+          buzzer_test_timeout = HAL_GetTick();
+          if(buzzer_test_timeout == 0) buzzer_test_timeout = 1; 
+
+          CAN_TxHeaderTypeDef UdsTxHeader = {0x7E8, 0, CAN_ID_STD, CAN_RTR_DATA, 8, DISABLE};
+          uint8_t UdsTxData[8] = {0x02, 0x6F, 0x01, 0x55, 0x55, 0x55, 0x55, 0x55};
+          uint32_t UdsTxMailbox;
+
+          if (HAL_CAN_GetTxMailboxesFreeLevel(&hcan) == 0) {
+              HAL_CAN_AbortTxRequest(&hcan, CAN_TX_MAILBOX0 | CAN_TX_MAILBOX1 | CAN_TX_MAILBOX2);
+          }
+          HAL_CAN_AddTxMessage(&hcan, &UdsTxHeader, UdsTxData, &UdsTxMailbox);
+          
+          printf("[NODE B] Da gui Response UDS IO Control.\r\n");
+      }
     }
 
-    /* Small stabilization delay */
     HAL_Delay(10); 
-	}
+  }
   /* USER CODE END 3 */
 }
 
@@ -263,17 +304,40 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+/* Retargets the C library printf function to the USART */
+PUTCHAR_PROTOTYPE
+{
+  /* Timeout lowered to 10ms to prevent system hang */
+  HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, 10); 
+  return ch;
+}
+
+/* CAN RX interrupt callback (Executed when message arrives) */
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 {
     if (HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &RxHeader, RxData) == HAL_OK)
     {
-        HAL_GPIO_TogglePin(LED_WORKING_GPIO_Port, LED_WORKING_Pin);
+      HAL_GPIO_TogglePin(LED_WORKING_GPIO_Port, LED_WORKING_Pin);
 
-       if (RxHeader.StdId == 0x450)
+      /* Branch 1: Application Layer (Normal Control) */
+      if (RxHeader.StdId == 0x450)
+      {
+        new_command_flag = 1;          
+        cmd_warning_level = RxData[0]; 
+      }
+      /* Branch 2: Diagnostic Layer (UDS Requests) */
+      else if (RxHeader.StdId == 0x7E0)
+      {
+        uds_rx_flag = 1;               
+        uds_dlc = RxHeader.DLC;        
+        
+        /* Safely copy payload without <string.h> */
+        for(uint8_t i = 0; i < RxHeader.DLC; i++)
         {
-            new_command_flag = 1;						/* Signal main loop to process */
-            cmd_warning_level = RxData[0];	/* Level 0-3 */
+          uds_rx_data[i] = RxData[i];
         }
+      }
     }
 }
 
