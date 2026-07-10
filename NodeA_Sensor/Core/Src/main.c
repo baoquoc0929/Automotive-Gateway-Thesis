@@ -38,6 +38,8 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+#define DEBUG_MODE 0                /* 1: Turn on to enable debug output, 0: Turn off to save resources */ 
+#define ENABLE_CAN_RX_INTERRUPT 0   /* 1: Turn on to enable CAN RX interrupt, 0: Turn off */
 
 /* USER CODE END PD */
 
@@ -53,6 +55,8 @@ CAN_TxHeaderTypeDef TxHeader;    /* Structure for CAN TX message header */
 uint8_t             TxData[2];   /* Buffer for 2 bytes of distance data */
 uint32_t            TxMailbox;   /* Variable to store the assigned TX mailbox */
 char                uart_buf[100]; /* Buffer for UART debug messages */
+
+volatile uint32_t rx_packet_count = 0; /* Counter for received CAN packets (for debugging) */
 
 /* USER CODE END PV */
 
@@ -109,10 +113,12 @@ int main(void)
   canfilterconfig.FilterBank = 0;                        /* Use Filter Bank 0 */
   canfilterconfig.FilterMode = CAN_FILTERMODE_IDMASK;    /* Identifier Mask mode */
   canfilterconfig.FilterScale = CAN_FILTERSCALE_32BIT;   /* 32-bit filter scale */
-  canfilterconfig.FilterIdHigh = 0x25A << 5;             /* Filter ID High bits */
-  canfilterconfig.FilterIdLow = 0x0000;                  /* Filter ID Low bits */
-  canfilterconfig.FilterMaskIdHigh = 0x7FF << 5;
-  canfilterconfig.FilterMaskIdLow = 0x0000;              /* Mask Low: 0 means "Don't care" (Accept all) */
+
+  canfilterconfig.FilterIdHigh = 0x0000;
+  canfilterconfig.FilterIdLow = 0x0000;
+  canfilterconfig.FilterMaskIdHigh = 0x0000;
+  canfilterconfig.FilterMaskIdLow = 0x0000;              /* Mask: 0 means "Don't care" (Accept all) */
+  
   canfilterconfig.FilterFIFOAssignment = CAN_RX_FIFO0;   /* Assign accepted messages to FIFO 0 */
   canfilterconfig.FilterActivation = ENABLE;             /* Activate this filter */
   canfilterconfig.SlaveStartFilterBank = 14;             /* Default for single CAN peripherals */
@@ -130,9 +136,13 @@ int main(void)
 		Error_Handler();
 	}
 
-  /* 4. Activate CAN Notification (Interrupt) for RX FIFO 0 */
-  //HAL_CAN_ActivateNotification(&hcan, CAN_IT_RX_FIFO0_MSG_PENDING);
-
+  /* 4. Activate CAN Notification (Interrupt) */
+  #if ENABLE_CAN_RX_INTERRUPT
+    if (HAL_CAN_ActivateNotification(&hcan, CAN_IT_RX_FIFO0_MSG_PENDING) != HAL_OK)
+    {
+      Error_Handler();
+    }
+  #endif
 	/* 5. Prepare CAN TX Header for Distance Data */
   TxHeader.StdId = 0x250;               /* Message ID for Parking Sensor Data */
   TxHeader.RTR = CAN_RTR_DATA;          /* Sending actual data frame */
@@ -164,13 +174,15 @@ int main(void)
 
       /* 4. Request transmission of the CAN message */
 			if (HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox) == HAL_OK)
-      {
-        /* Debug: Print transmission status to UART */
-        sprintf(uart_buf, "CAN Sent: ID=0x%lX, Dist=%d cm\r\n", (unsigned long)TxHeader.StdId, dist_cm);
-        HAL_UART_Transmit(&huart1, (uint8_t*)uart_buf, strlen(uart_buf), 100);
-				
+      {	
 				/* Toggle On-board LED to indicate successful transmission */
         HAL_GPIO_TogglePin(LED_NOTICE_GPIO_Port, LED_NOTICE_Pin);
+
+        #if DEBUG_MODE
+        /* Only compile this section when DEBUG_MODE = 1 */
+        sprintf(uart_buf, "CAN Sent: ID=0x%lX, Dist=%d cm\r\n", (unsigned long)TxHeader.StdId, dist_cm);
+        HAL_UART_Transmit(&huart1, (uint8_t*)uart_buf, strlen(uart_buf), 100);
+        #endif
       }
     }
 
@@ -228,6 +240,37 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
         HCSR04_EXTI_Callback();
     }
 }
+
+/**
+ * @brief  Rx FIFO 0 message pending callback.
+ * This function is called when a new CAN message arrives.
+ * @param  hcan: pointer to a CAN_HandleTypeDef structure.
+ */
+#if ENABLE_CAN_RX_INTERRUPT
+void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
+{
+  CAN_RxHeaderTypeDef RxHeader;
+  uint8_t RxData[8];
+
+  /* 1. Retrieve the message from the CAN RX FIFO */
+  if (HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &RxHeader, RxData) == HAL_OK)
+  {
+
+    rx_packet_count++; /* Increment the received packet counter */
+    
+    /* 2. Routing Logic: Handle incoming messages based on their ID */
+
+    /* Example: If Gateway sends a command to Node A */
+    if (RxHeader.StdId == 0x200) // Example ID for a command from the Gateway
+    {
+       // Handle received command here
+       // e.g., Set a flag or change operation mode
+    }
+    
+    /* Branch for other diagnostic IDs... */
+  }
+}
+#endif
 
 /* USER CODE END 4 */
 

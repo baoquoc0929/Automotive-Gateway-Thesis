@@ -39,6 +39,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+#define EVT_UDS_RX_BIT   0x00000001U
 
 /* USER CODE END PD */
 
@@ -64,7 +65,6 @@ extern uint8_t             current_level;
 extern uint16_t            filtered_distance;
 
 /* External UDS Variables */
-extern volatile uint8_t    gateway_uds_flag;
 extern uint8_t             gateway_uds_level;
 
 /* External Functions */
@@ -72,6 +72,12 @@ extern void Handle_Distance(uint16_t dist);
 extern void Gateway_Send_UDP(uint16_t dist_cm);
 extern void Gateway_UDP_Receiver_Init(void);
 extern void Gateway_Send_UDS_UDP(uint8_t level);
+
+/* Event Flags for UDS Handling */
+osEventFlagsId_t UdsEventFlagsHandle;
+const osEventFlagsAttr_t UdsEventFlags_attributes = {
+  .name = "UdsEventFlags"
+};
 
 /* USER CODE END Variables */
 /* Definitions for Logic_Task */
@@ -155,7 +161,8 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE END RTOS_THREADS */
 
   /* USER CODE BEGIN RTOS_EVENTS */
-  /* add events, ... */
+  /* Create event flags for UDS handling */
+  UdsEventFlagsHandle = osEventFlagsNew(&UdsEventFlags_attributes);
   /* USER CODE END RTOS_EVENTS */
 
 }
@@ -177,12 +184,13 @@ void StartLogicTask(void *argument)
   Gateway_UDP_Receiver_Init();
     
   uint16_t received_dist;
+  uint32_t flags;
     
   /* Infinite loop */
   for(;;)
   {
     /* Block and yield CPU until CAN data is available in the Queue */
-    if (osMessageQueueGet(CAN_Data_QueueHandle, &received_dist, NULL, osWaitForever) == osOK)
+    if (osMessageQueueGet(CAN_Data_QueueHandle, &received_dist, NULL, 20) == osOK)
     {
         /* 1. Process AUTO mode logic */
         if (control_mode == 0)
@@ -213,11 +221,11 @@ void StartLogicTask(void *argument)
         osMessageQueuePut(Eth_Data_QueueHandle, &filtered_distance, 0, 0);
     }
         
-    /* 3. Check for incoming UDS response from Node B */
-    if (gateway_uds_flag == 1)
-    {
-        gateway_uds_flag = 0; /* Clear flag immediately */
-      
+    /* 3. Check for incoming UDS response using Event Flags (Non-blocking check) */
+    /* Check the event flags */
+    flags = osEventFlagsWait(UdsEventFlagsHandle, EVT_UDS_RX_BIT, osFlagsWaitAny, 0);
+    if (flags == EVT_UDS_RX_BIT)
+    { 
         printf("\r\n=======================================\r\n");
         printf("[GATEWAY] BAT DUOC PHAN HOI UDS TU NODE B!\r\n");
         printf("-> ID: 0x7E8 | Muc canh bao nhan duoc: %d\r\n", gateway_uds_level);

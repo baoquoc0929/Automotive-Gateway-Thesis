@@ -50,6 +50,9 @@
 #define CAN_ID_GATEWAY_APP_TX   (0x450)
 #define CAN_ID_GATEWAY_UDS_TX   (0x7E0)
 #define CAN_ID_NODE_B_UDS_RX    (0x7E8)
+
+/* Event Flags */
+#define EVT_UDS_RX_BIT   0x00000001U
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -72,10 +75,7 @@ uint32_t            TxMailbox;              /**< CAN Tx mailbox identifier */
 CAN_RxHeaderTypeDef RxHeader;               /**< CAN Rx header structure (From Node A & B) */
 uint8_t             RxData[8];              /**< CAN Rx payload data array */
 
-volatile uint8_t    new_can_data_flag = 0;  /**< Flag indicating new CAN data received */
-
 /* UDS Diagnostic Protocol Variables */
-volatile uint8_t    gateway_uds_flag = 0;   /**< Flag indicating UDS response received */
 uint8_t             gateway_uds_level = 0;  /**< Extracted UDS response payload */
 
 /* Telemetry & System Logic Variables */
@@ -92,6 +92,8 @@ char                uart_buf[250];          /**< Buffer for UART transmission */
 
 /* External Variables */
 extern osMessageQueueId_t CAN_Data_QueueHandle;
+
+extern osEventFlagsId_t UdsEventFlagsHandle;
 
 /* USER CODE END PV */
 
@@ -149,19 +151,19 @@ void Handle_Distance(uint16_t dist)
   /* Evaluate safety level using the filtered data */
   if(filtered_distance > 0 && filtered_distance <= 20)
   {
-    current_level = LEVEL_DANGER;    /* Red LED */
+    current_level = LEVEL_DANGER;
   }
   else if(filtered_distance > 20 && filtered_distance <= 50) 
   {
-    current_level = LEVEL_WARNING;   /* Orange LED */
+    current_level = LEVEL_WARNING;
   }
   else if(filtered_distance > 50 && filtered_distance <= 100)
   {
-    current_level = LEVEL_CAUTION;   /* Blue LED */
+    current_level = LEVEL_CAUTION;
   }
   else
   {
-    current_level = LEVEL_SAFE;      /* Green LED */
+    current_level = LEVEL_SAFE;
   }
 }
 
@@ -402,7 +404,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
     /* Branch 2: UDS Response from Node B */
     else if (RxHeader.StdId == CAN_ID_NODE_B_UDS_RX)
     {
-      gateway_uds_flag = 1;
+      osEventFlagsSet(UdsEventFlagsHandle, EVT_UDS_RX_BIT);
       gateway_uds_level = RxData[1]; 
     }
   }
