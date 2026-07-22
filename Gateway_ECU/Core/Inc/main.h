@@ -101,6 +101,13 @@ void Error_Handler(void);
 #define MEMS_INT2_GPIO_Port GPIOE
 
 /* USER CODE BEGIN Private defines */
+/* Enable DWT (Data Watchpoint and Trace) for cycle counting */
+#define DWT_ENABLE()  { CoreDebug->DEMCR |= CoreDebug_DEMCR_TRCENA_Msk; \
+                        DWT->CTRL |= DWT_CTRL_CYCCNTENA_Msk; }
+#define DWT_GET()     (DWT->CYCCNT)
+
+extern volatile uint32_t can_sensor_start_time;    // Timestamp for CAN message from Node A (Sensor)
+extern volatile uint32_t can_uds_start_time;       // Timestamp for UDS response from Node B
 
 /* USER CODE END Private defines */
 

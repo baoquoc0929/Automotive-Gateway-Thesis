@@ -95,6 +95,9 @@ extern osMessageQueueId_t CAN_Data_QueueHandle;
 
 extern osEventFlagsId_t UdsEventFlagsHandle;
 
+volatile uint32_t can_sensor_start_time;    // Timestamp for CAN message from Node A (Sensor)
+volatile uint32_t can_uds_start_time;       // Timestamp for UDS response from Node B
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -396,6 +399,10 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
     /* Branch 1: Sensor Data from Node A */
     if (RxHeader.StdId == CAN_ID_NODE_A_RX)
     {
+      /* Capture timestamp for latency measurement */
+      can_sensor_start_time = DWT_GET();
+
+      /* Extract distance value from CAN payload (2 bytes) */
       uint16_t dist_val = (uint16_t)((RxData[0] << 8) | RxData[1]);
 			
       /* Push raw distance into the queue. Timeout is 0 because this is inside ISR */
@@ -404,6 +411,10 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
     /* Branch 2: UDS Response from Node B */
     else if (RxHeader.StdId == CAN_ID_NODE_B_UDS_RX)
     {
+      /* Capture timestamp for latency measurement */
+      can_uds_start_time = DWT_GET();
+
+      /* Extract UDS response level from CAN payload (1 byte) */
       osEventFlagsSet(UdsEventFlagsHandle, EVT_UDS_RX_BIT);
       gateway_uds_level = RxData[1]; 
     }

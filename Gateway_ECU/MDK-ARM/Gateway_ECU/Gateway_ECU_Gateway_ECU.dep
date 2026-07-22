@@ -1,8 +1,8 @@
 Dependencies for Project 'Gateway_ECU', Target 'Gateway_ECU': (DO NOT MODIFY !)
 CompilerVersion: 5060750::V5.06 update 6 (build 750)::.\ARMCC
 F (startup_stm32f407xx.s)(0x69E8E5C5)(--cpu Cortex-M4.fp.sp -g --apcs=interwork --pd "__MICROLIB SETA 1" -I ../Drivers/CMSIS/Include-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include--pd "__UVISION_VERSION SETA 531" --pd "_RTE_ SETA 1" --pd "STM32F407xx SETA 1" --pd "_RTE_ SETA 1"--list startup_stm32f407xx.lst --xref -o gateway_ecu\startup_stm32f407xx.o --depend gateway_ecu\startup_stm32f407xx.d)
-F (../Core/Src/main.c)(0x6A50C14B)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\main.o --omf_browse gateway_ecu\main.crf --depend gateway_ecu\main.d)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+F (../Core/Src/main.c)(0x6A53BF9B)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\main.o --omf_browse gateway_ecu\main.crf --depend gateway_ecu\main.d)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -96,7 +96,7 @@ I (../Middlewares/Third_Party/LwIP/src/include/lwip/prot/ip.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/prot/udp.h)(0x69685572)
 F (../Core/Src/gpio.c)(0x69E8D57C)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\gpio.o --omf_browse gateway_ecu\gpio.crf --depend gateway_ecu\gpio.d)
 I (../Core/Inc/gpio.h)(0x69E8D57C)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -129,7 +129,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x696855C8)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x696855C8)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x696855C8)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x696855C8)
-F (../Core/Src/freertos.c)(0x6A50BF0A)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\freertos.o --omf_browse gateway_ecu\freertos.crf --depend gateway_ecu\freertos.d)
+F (../Core/Src/freertos.c)(0x6A55F8FC)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\freertos.o --omf_browse gateway_ecu\freertos.crf --depend gateway_ecu\freertos.d)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h)(0x6A0A8B09)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x5EC7840C)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5EC7840C)
@@ -141,7 +141,7 @@ I (../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h)(0x6A0A8B09)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/task.h)(0x6A0A8B09)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/list.h)(0x6A0A8B09)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -217,7 +217,7 @@ I (../LWIP/Target/ethernetif.h)(0x6A0A8B07)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/tcpip.h)(0x69685572)
 F (../Core/Src/can.c)(0x6A0A8B07)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\can.o --omf_browse gateway_ecu\can.crf --depend gateway_ecu\can.d)
 I (../Core/Inc/can.h)(0x69E8D57C)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -252,7 +252,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x696855C8)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x696855C8)
 F (../Core/Src/usart.c)(0x69E8D57C)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\usart.o --omf_browse gateway_ecu\usart.crf --depend gateway_ecu\usart.d)
 I (../Core/Inc/usart.h)(0x69E8D57C)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -286,7 +286,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x696855C8)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x696855C8)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x696855C8)
 F (../Core/Src/stm32f4xx_it.c)(0x6A0A8B07)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\stm32f4xx_it.o --omf_browse gateway_ecu\stm32f4xx_it.crf --depend gateway_ecu\stm32f4xx_it.d)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -321,7 +321,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x696855C8)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_it.h)(0x6A0A8B07)
 F (../Core/Src/stm32f4xx_hal_msp.c)(0x6A0A8B07)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\stm32f4xx_hal_msp.o --omf_browse gateway_ecu\stm32f4xx_hal_msp.crf --depend gateway_ecu\stm32f4xx_hal_msp.d)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -388,7 +388,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h)(0x696855C8)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x696855C8)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x696855C8)
 F (../LWIP/Target/ethernetif.c)(0x6A0A8B07)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\ethernetif.o --omf_browse gateway_ecu\ethernetif.crf --depend gateway_ecu\ethernetif.d)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -476,7 +476,7 @@ F (../LWIP/App/lwip.c)(0x6A0A8B07)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -
 I (../LWIP/App/lwip.h)(0x69E8D57D)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -1193,7 +1193,7 @@ F (../Middlewares/Third_Party/LwIP/src/netif/ppp/auth.c)(0x69685572)(--c99 -c --
 I (../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp_opts.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -1239,7 +1239,7 @@ F (../Middlewares/Third_Party/LwIP/src/netif/ppp/ccp.c)(0x69685572)(--c99 -c --c
 I (../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp_opts.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -1285,7 +1285,7 @@ F (../Middlewares/Third_Party/LwIP/src/netif/ppp/chap_ms.c)(0x69685572)(--c99 -c
 I (../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp_opts.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -1331,7 +1331,7 @@ F (../Middlewares/Third_Party/LwIP/src/netif/ppp/chap-md5.c)(0x69685572)(--c99 -
 I (../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp_opts.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -1377,7 +1377,7 @@ F (../Middlewares/Third_Party/LwIP/src/netif/ppp/chap-new.c)(0x69685572)(--c99 -
 I (../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp_opts.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -1423,7 +1423,7 @@ F (../Middlewares/Third_Party/LwIP/src/netif/ppp/demand.c)(0x69685572)(--c99 -c 
 I (../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp_opts.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -1469,7 +1469,7 @@ F (../Middlewares/Third_Party/LwIP/src/netif/ppp/eap.c)(0x69685572)(--c99 -c --c
 I (../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp_opts.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -1515,7 +1515,7 @@ F (../Middlewares/Third_Party/LwIP/src/netif/ppp/eui64.c)(0x69685572)(--c99 -c -
 I (../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp_opts.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -1561,7 +1561,7 @@ F (../Middlewares/Third_Party/LwIP/src/netif/ppp/fsm.c)(0x69685572)(--c99 -c --c
 I (../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp_opts.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -1607,7 +1607,7 @@ F (../Middlewares/Third_Party/LwIP/src/netif/ppp/ipcp.c)(0x69685572)(--c99 -c --
 I (../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp_opts.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -1653,7 +1653,7 @@ F (../Middlewares/Third_Party/LwIP/src/netif/ppp/ipv6cp.c)(0x69685572)(--c99 -c 
 I (../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp_opts.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -1699,7 +1699,7 @@ F (../Middlewares/Third_Party/LwIP/src/netif/ppp/lcp.c)(0x69685572)(--c99 -c --c
 I (../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp_opts.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -1745,7 +1745,7 @@ F (../Middlewares/Third_Party/LwIP/src/netif/ppp/magic.c)(0x69685572)(--c99 -c -
 I (../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp_opts.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -1791,7 +1791,7 @@ F (../Middlewares/Third_Party/LwIP/src/netif/ppp/mppe.c)(0x69685572)(--c99 -c --
 I (../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp_opts.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -1837,7 +1837,7 @@ F (../Middlewares/Third_Party/LwIP/src/netif/ppp/multilink.c)(0x69685572)(--c99 
 I (../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp_opts.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -1883,7 +1883,7 @@ F (../Middlewares/Third_Party/LwIP/src/netif/ppp/ppp.c)(0x69685572)(--c99 -c --c
 I (../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp_opts.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -1929,7 +1929,7 @@ F (../Middlewares/Third_Party/LwIP/src/netif/ppp/pppapi.c)(0x69685572)(--c99 -c 
 I (../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp_opts.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -1975,7 +1975,7 @@ F (../Middlewares/Third_Party/LwIP/src/netif/ppp/pppcrypt.c)(0x69685572)(--c99 -
 I (../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp_opts.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -2021,7 +2021,7 @@ F (../Middlewares/Third_Party/LwIP/src/netif/ppp/pppoe.c)(0x69685572)(--c99 -c -
 I (../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp_opts.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -2067,7 +2067,7 @@ F (../Middlewares/Third_Party/LwIP/src/netif/ppp/pppol2tp.c)(0x69685572)(--c99 -
 I (../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp_opts.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -2113,7 +2113,7 @@ F (../Middlewares/Third_Party/LwIP/src/netif/ppp/pppos.c)(0x69685572)(--c99 -c -
 I (../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp_opts.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -2159,7 +2159,7 @@ F (../Middlewares/Third_Party/LwIP/src/netif/ppp/upap.c)(0x69685572)(--c99 -c --
 I (../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp_opts.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -2205,7 +2205,7 @@ F (../Middlewares/Third_Party/LwIP/src/netif/ppp/utils.c)(0x69685572)(--c99 -c -
 I (../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp_opts.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -2251,7 +2251,7 @@ F (../Middlewares/Third_Party/LwIP/src/netif/ppp/vj.c)(0x69685572)(--c99 -c --cp
 I (../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp_opts.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -2298,7 +2298,7 @@ I (../Middlewares/Third_Party/LwIP/src/include/netif/bridgeif.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/netif/bridgeif_opts.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -2382,7 +2382,7 @@ I (../Middlewares/Third_Party/LwIP/src/include/netif/bridgeif.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/netif/bridgeif_opts.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -2458,7 +2458,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/netif/ethernet.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\ethernet.o --omf_browse gateway_ecu\ethernet.crf --depend gateway_ecu\ethernet.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -2531,7 +2531,7 @@ I (../Middlewares/Third_Party/LwIP/src/include/netif/lowpan6.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/netif/lowpan6_opts.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -2578,7 +2578,7 @@ I (../Middlewares/Third_Party/LwIP/src/include/netif/lowpan6_ble.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/netif/lowpan6_opts.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -2625,7 +2625,7 @@ I (../Middlewares/Third_Party/LwIP/src/include/netif/lowpan6_common.h)(0x6968557
 I (../Middlewares/Third_Party/LwIP/src/include/netif/lowpan6_opts.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -2671,7 +2671,7 @@ F (../Middlewares/Third_Party/LwIP/src/netif/slipif.c)(0x69685572)(--c99 -c --cp
 I (../Middlewares/Third_Party/LwIP/src/include/netif/slipif.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -2745,7 +2745,7 @@ F (../Middlewares/Third_Party/LwIP/src/netif/zepif.c)(0x69685572)(--c99 -c --cpu
 I (../Middlewares/Third_Party/LwIP/src/include/netif/zepif.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -2793,7 +2793,7 @@ F (../Middlewares/Third_Party/LwIP/src/netif/ppp/ecp.c)(0x69685572)(--c99 -c --c
 I (../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp_opts.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -2838,7 +2838,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\ctype.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/api/api_lib.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\api_lib.o --omf_browse gateway_ecu\api_lib.crf --depend gateway_ecu\api_lib.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -2931,7 +2931,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/api/api_msg.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\api_msg.o --omf_browse gateway_ecu\api_msg.crf --depend gateway_ecu\api_msg.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -3025,7 +3025,7 @@ F (../Middlewares/Third_Party/LwIP/src/api/err.c)(0x69685572)(--c99 -c --cpu Cor
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/err.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -3085,7 +3085,7 @@ I (../Middlewares/Third_Party/LwIP/src/include/lwip/errno.h)(0x69685572)
 F (../Middlewares/Third_Party/LwIP/src/api/if_api.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\if_api.o --omf_browse gateway_ecu\if_api.crf --depend gateway_ecu\if_api.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -3163,7 +3163,7 @@ I (../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h)(0x6A0A8
 F (../Middlewares/Third_Party/LwIP/src/api/netbuf.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\netbuf.o --omf_browse gateway_ecu\netbuf.crf --depend gateway_ecu\netbuf.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -3223,7 +3223,7 @@ F (../Middlewares/Third_Party/LwIP/src/api/netdb.c)(0x69685572)(--c99 -c --cpu C
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/netdb.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -3268,7 +3268,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\ctype.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/api/netifapi.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\netifapi.o --omf_browse gateway_ecu\netifapi.crf --depend gateway_ecu\netifapi.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -3313,7 +3313,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\ctype.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/api/sockets.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\sockets.o --omf_browse gateway_ecu\sockets.crf --depend gateway_ecu\sockets.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -3408,7 +3408,7 @@ I (../Middlewares/Third_Party/LwIP/src/include/lwip/mld6.h)(0x69685572)
 F (../Middlewares/Third_Party/LwIP/src/api/tcpip.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\tcpip.o --omf_browse gateway_ecu\tcpip.crf --depend gateway_ecu\tcpip.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -3493,7 +3493,7 @@ I (../Middlewares/Third_Party/LwIP/src/include/netif/ethernet.h)(0x69685572)
 F (../Middlewares/Third_Party/LwIP/src/core/altcp.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\altcp.o --omf_browse gateway_ecu\altcp.crf --depend gateway_ecu\altcp.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -3538,7 +3538,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\ctype.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/core/altcp_alloc.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\altcp_alloc.o --omf_browse gateway_ecu\altcp_alloc.crf --depend gateway_ecu\altcp_alloc.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -3583,7 +3583,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\ctype.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/core/altcp_tcp.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\altcp_tcp.o --omf_browse gateway_ecu\altcp_tcp.crf --depend gateway_ecu\altcp_tcp.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -3628,7 +3628,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\ctype.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/core/def.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\def.o --omf_browse gateway_ecu\def.crf --depend gateway_ecu\def.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -3675,7 +3675,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/core/dns.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\dns.o --omf_browse gateway_ecu\dns.crf --depend gateway_ecu\dns.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -3720,7 +3720,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\ctype.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/core/inet_chksum.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\inet_chksum.o --omf_browse gateway_ecu\inet_chksum.crf --depend gateway_ecu\inet_chksum.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -3773,7 +3773,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/core/init.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\init.o --omf_browse gateway_ecu\init.crf --depend gateway_ecu\init.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -3876,7 +3876,7 @@ I (../Middlewares/Third_Party/LwIP/src/include/netif/ppp/ppp_impl.h)(0x69685572)
 F (../Middlewares/Third_Party/LwIP/src/core/ip.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\ip.o --omf_browse gateway_ecu\ip.crf --depend gateway_ecu\ip.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -3939,7 +3939,7 @@ I (../Middlewares/Third_Party/LwIP/src/include/lwip/prot/ip.h)(0x69685572)
 F (../Middlewares/Third_Party/LwIP/src/core/mem.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\mem.o --omf_browse gateway_ecu\mem.crf --depend gateway_ecu\mem.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -4006,7 +4006,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/core/memp.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\memp.o --omf_browse gateway_ecu\memp.crf --depend gateway_ecu\memp.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -4115,7 +4115,7 @@ I (../Middlewares/Third_Party/LwIP/src/include/lwip/mld6.h)(0x69685572)
 F (../Middlewares/Third_Party/LwIP/src/core/netif.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\netif.o --omf_browse gateway_ecu\netif.crf --depend gateway_ecu\netif.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -4208,7 +4208,7 @@ I (../Middlewares/Third_Party/LwIP/src/include/netif/ethernet.h)(0x69685572)
 F (../Middlewares/Third_Party/LwIP/src/core/pbuf.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\pbuf.o --omf_browse gateway_ecu\pbuf.crf --depend gateway_ecu\pbuf.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -4293,7 +4293,7 @@ I (../Middlewares/Third_Party/LwIP/src/include/lwip/timeouts.h)(0x69685572)
 F (../Middlewares/Third_Party/LwIP/src/core/raw.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\raw.o --omf_browse gateway_ecu\raw.crf --depend gateway_ecu\raw.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -4338,7 +4338,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\ctype.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/core/stats.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\stats.o --omf_browse gateway_ecu\stats.crf --depend gateway_ecu\stats.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -4383,7 +4383,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\ctype.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/core/sys.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\sys.o --omf_browse gateway_ecu\sys.crf --depend gateway_ecu\sys.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -4442,7 +4442,7 @@ I (../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h)(0x6A0A8
 F (../Middlewares/Third_Party/LwIP/src/core/tcp.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\tcp.o --omf_browse gateway_ecu\tcp.crf --depend gateway_ecu\tcp.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -4513,7 +4513,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/core/tcp_in.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\tcp_in.o --omf_browse gateway_ecu\tcp_in.crf --depend gateway_ecu\tcp_in.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -4585,7 +4585,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/core/tcp_out.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\tcp_out.o --omf_browse gateway_ecu\tcp_out.crf --depend gateway_ecu\tcp_out.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -4656,7 +4656,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/core/timeouts.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\timeouts.o --omf_browse gateway_ecu\timeouts.crf --depend gateway_ecu\timeouts.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -4754,7 +4754,7 @@ I (../Middlewares/Third_Party/LwIP/src/include/lwip/dhcp6.h)(0x69685572)
 F (../Middlewares/Third_Party/LwIP/src/core/udp.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\udp.o --omf_browse gateway_ecu\udp.crf --depend gateway_ecu\udp.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -4827,7 +4827,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/core/ipv4/autoip.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\autoip.o --omf_browse gateway_ecu\autoip.crf --depend gateway_ecu\autoip.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -4872,7 +4872,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\ctype.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/core/ipv4/dhcp.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\dhcp.o --omf_browse gateway_ecu\dhcp.crf --depend gateway_ecu\dhcp.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -4917,7 +4917,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\ctype.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/core/ipv4/etharp.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\etharp.o --omf_browse gateway_ecu\etharp.crf --depend gateway_ecu\etharp.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -4987,7 +4987,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/core/ipv4/icmp.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\icmp.o --omf_browse gateway_ecu\icmp.crf --depend gateway_ecu\icmp.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -5054,7 +5054,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/core/ipv4/igmp.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\igmp.o --omf_browse gateway_ecu\igmp.crf --depend gateway_ecu\igmp.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -5099,7 +5099,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\ctype.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/core/ipv4/ip4.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\ip4.o --omf_browse gateway_ecu\ip4.crf --depend gateway_ecu\ip4.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -5177,7 +5177,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/core/ipv4/ip4_addr.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\ip4_addr.o --omf_browse gateway_ecu\ip4_addr.crf --depend gateway_ecu\ip4_addr.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -5235,7 +5235,7 @@ I (../Middlewares/Third_Party/LwIP/src/include/lwip/priv/mem_priv.h)(0x69685572)
 F (../Middlewares/Third_Party/LwIP/src/core/ipv4/ip4_frag.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\ip4_frag.o --omf_browse gateway_ecu\ip4_frag.crf --depend gateway_ecu\ip4_frag.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -5303,7 +5303,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/core/ipv6/dhcp6.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\dhcp6.o --omf_browse gateway_ecu\dhcp6.crf --depend gateway_ecu\dhcp6.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -5348,7 +5348,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\ctype.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/core/ipv6/ethip6.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\ethip6.o --omf_browse gateway_ecu\ethip6.crf --depend gateway_ecu\ethip6.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -5393,7 +5393,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\ctype.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/core/ipv6/icmp6.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\icmp6.o --omf_browse gateway_ecu\icmp6.crf --depend gateway_ecu\icmp6.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -5438,7 +5438,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\ctype.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/core/ipv6/inet6.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\inet6.o --omf_browse gateway_ecu\inet6.crf --depend gateway_ecu\inet6.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -5483,7 +5483,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\ctype.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/core/ipv6/ip6.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\ip6.o --omf_browse gateway_ecu\ip6.crf --depend gateway_ecu\ip6.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -5528,7 +5528,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\ctype.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/core/ipv6/ip6_addr.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\ip6_addr.o --omf_browse gateway_ecu\ip6_addr.crf --depend gateway_ecu\ip6_addr.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -5573,7 +5573,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\ctype.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/core/ipv6/ip6_frag.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\ip6_frag.o --omf_browse gateway_ecu\ip6_frag.crf --depend gateway_ecu\ip6_frag.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -5641,7 +5641,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/core/ipv6/mld6.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\mld6.o --omf_browse gateway_ecu\mld6.crf --depend gateway_ecu\mld6.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -5686,7 +5686,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\ctype.h)(0x5EC78414)
 F (../Middlewares/Third_Party/LwIP/src/core/ipv6/nd6.c)(0x69685572)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../LWIP/App -I ../LWIP/Target -I ../Middlewares/Third_Party/LwIP/src/include -I ../Middlewares/Third_Party/LwIP/system -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/BSP/Components/lan8742 -I ../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/LwIP/src/include/lwip -I ../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I ../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I ../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I ../Middlewares/Third_Party/LwIP/src/include/netif -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I ../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I ../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I ../Middlewares/Third_Party/LwIP/system/arch -I ../Drivers/CMSIS/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F-I.\RTE\_Gateway_ECU-IC:\Users\PC\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-D__UVISION_VERSION="531" -D_RTE_ -DSTM32F407xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F407xx-o gateway_ecu\nd6.o --omf_browse gateway_ecu\nd6.crf --depend gateway_ecu\nd6.d)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -5742,7 +5742,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\limits.h)(0x5EC78402)
 I (C:\Keil_v5\ARM\ARMCC\include\ctype.h)(0x5EC78414)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
@@ -5799,7 +5799,7 @@ I (../Middlewares/Third_Party/LwIP/src/include/lwip/apps/mqtt.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/apps/mqtt_opts.h)(0x69685572)
 I (../Middlewares/Third_Party/LwIP/src/include/lwip/opt.h)(0x69685572)
 I (../LWIP/Target/lwipopts.h)(0x6A0A8B07)
-I (../Core/Inc/main.h)(0x6A0A8B07)
+I (../Core/Inc/main.h)(0x6A53BF99)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x696855C8)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x6A0A8B07)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x696855C8)
