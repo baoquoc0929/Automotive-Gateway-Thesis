@@ -25,10 +25,11 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <stdio.h>     /* Required for printf */
-#include <string.h>    /* Required for strlen */
-#include "can.h"       /* Required for CAN handles and structures */
-#include "lwip.h"      /* Required for LwIP definitions */
+#include <stdio.h>        /* Required for printf */
+#include <string.h>       /* Required for strlen */
+#include "can.h"          /* Required for CAN handles and structures */
+#include "lwip.h"         /* Required for LwIP definitions */
+#include "app_gateway.h"  /* Required for gateway routing functions */
 
 /* USER CODE END Includes */
 
@@ -50,30 +51,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-/* External CAN Variables */
-extern CAN_HandleTypeDef   hcan1;
-extern CAN_TxHeaderTypeDef TxHeader;
-extern uint8_t             TxData[8];
-extern uint32_t            TxMailbox;
-
-/* External System Logic Variables */
-extern uint8_t             control_mode;
-extern uint32_t            last_manual_time;
-extern const uint32_t      MANUAL_TIMEOUT;
-extern uint8_t             previous_level;
-extern uint8_t             current_level;
-extern uint16_t            filtered_distance;
-
-/* External UDS Variables */
-extern uint8_t             gateway_uds_level;
-
-/* External Functions */
-extern void Handle_Distance(uint16_t dist);
-extern void Gateway_Send_UDP(uint16_t dist_cm);
-extern void Gateway_UDP_Receiver_Init(void);
-extern void Gateway_Send_UDS_UDP(uint8_t level);
-
-/* Event Flags for UDS Handling */
+/* Definitions for UDS Event Flag */
 osEventFlagsId_t UdsEventFlagsHandle;
 const osEventFlagsAttr_t UdsEventFlags_attributes = {
   .name = "UdsEventFlags"
@@ -186,79 +164,10 @@ void StartLogicTask(void *argument)
   /* Enable DWT for cycle counting to measure CAN message latency */
   DWT_ENABLE();
     
-  uint16_t received_dist;
-  uint32_t flags;
-
-  uint32_t end_time;
-  float latency_us;
-    
   /* Infinite loop */
   for(;;)
   {
-    /* Block and yield CPU until CAN data is available in the Queue */
-    if (osMessageQueueGet(CAN_Data_QueueHandle, &received_dist, NULL, 0) == osOK)
-    {
-      /* 1. Process AUTO mode logic */
-      if (control_mode == 0)
-      {
-        /* Calculate warning level and update filtered_distance */
-        Handle_Distance(received_dist); 
-
-        /* Send CAN message to Node B only if the warning level has changed */
-        if (current_level != previous_level)
-        {
-          TxHeader.StdId = 0x450;
-          TxHeader.DLC = 1;
-          TxData[0] = current_level;
-          
-          if (HAL_CAN_GetTxMailboxesFreeLevel(&hcan1) == 0)
-          {
-            HAL_CAN_AbortTxRequest(&hcan1, CAN_TX_MAILBOX0 | CAN_TX_MAILBOX1 | CAN_TX_MAILBOX2);
-          }
-          
-          if (HAL_CAN_AddTxMessage(&hcan1, &TxHeader, TxData, &TxMailbox) == HAL_OK)
-          {
-            previous_level = current_level;
-          }
-        }
-      }
-
-      /* 2. Forward the filtered distance to the Ethernet Task */
-      osMessageQueuePut(Eth_Data_QueueHandle, &filtered_distance, 0, 0);
-
-      /* 3. Measure latency for CAN message from Node A */
-      end_time = DWT_GET();
-      latency_us = (float)(end_time - can_sensor_start_time) / (SystemCoreClock / 1000000.0f);
-      static uint32_t sensor_print_counter = 0;
-      sensor_print_counter++;
-      if (sensor_print_counter >= 100) 
-      {
-          printf("[LATENCY - SENSOR] CAN -> Eth Queue: %.2f us\r\n", latency_us);
-          sensor_print_counter = 0; // Reset counter
-      }
-    }
-        
-    /* 3. Check for incoming UDS response using Event Flags (Non-blocking check) */
-    /* Check the event flags */
-    flags = osEventFlagsWait(UdsEventFlagsHandle, EVT_UDS_RX_BIT, osFlagsWaitAny, 0);
-    if (flags == EVT_UDS_RX_BIT)
-    {   
-      /* Send UDS response via UDP */
-      Gateway_Send_UDS_UDP(gateway_uds_level);
-
-      /* Measure latency for UDS response from Node B */
-      end_time = DWT_GET();
-      latency_us = (float)(end_time - can_uds_start_time) / (SystemCoreClock / 1000000.0f);
-      printf("[LATENCY - UDS] CAN -> Eth UDP: %.2f us\r\n", latency_us);
-			
-      /* Print gateway information */
-			printf("\r\n=======================================\r\n");
-      printf("[GATEWAY] BAT DUOC PHAN HOI UDS TU NODE B!\r\n");
-      printf("-> ID: 0x7E8 | Muc canh bao nhan duoc: %d\r\n", gateway_uds_level);
-      printf("[GATEWAY] Dang gui goi tin Ethernet len PC...\r\n");
-      printf("=======================================\r\n");
-    }
-    osDelay(1);   // Yield CPU to other tasks (1ms tick)
+    App_Gateway_Logic_Task_Run();  /* Core logic for CAN to Ethernet routing and UDS handling */
   }
   /* USER CODE END StartLogicTask */
 }
@@ -273,28 +182,11 @@ void StartLogicTask(void *argument)
 void StartEthTask(void *argument)
 {
   /* USER CODE BEGIN StartEthTask */
-  uint16_t dist_to_send;
-    
+  
   /* Infinite loop */
   for(;;)
   {
-    /* 1. Check Manual Mode Timeout */
-    if (control_mode == 1) 
-    {
-      if (HAL_GetTick() - last_manual_time > MANUAL_TIMEOUT) 
-      {
-        control_mode = 0; 
-        previous_level = 255; /* Force level update in the next cycle */
-      }
-    }
-
-    /* 2. Wait for distance data from Logic Task and send via UDP */
-    if (osMessageQueueGet(Eth_Data_QueueHandle, &dist_to_send, NULL, 10) == osOK)
-    {
-        Gateway_Send_UDP(dist_to_send);
-    }
-    
-    osDelay(10); /* Yield CPU to other tasks (10ms tick) */
+    App_Gateway_Eth_Task_Run();  /* Core logic for Ethernet transmission and manual mode timeout */
   }
   /* USER CODE END StartEthTask */
 }

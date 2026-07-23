@@ -88,3 +88,9 @@ gateway_ecu\freertos.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/sys.h
 gateway_ecu\freertos.o: ../Middlewares/Third_Party/LwIP/system/arch/sys_arch.h
 gateway_ecu\freertos.o: ../LWIP/Target/ethernetif.h
 gateway_ecu\freertos.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/tcpip.h
+gateway_ecu\freertos.o: ..\Application\Inc\app_gateway.h
+gateway_ecu\freertos.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/udp.h
+gateway_ecu\freertos.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/ip.h
+gateway_ecu\freertos.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/ip6.h
+gateway_ecu\freertos.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/ip.h
+gateway_ecu\freertos.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/prot/udp.h

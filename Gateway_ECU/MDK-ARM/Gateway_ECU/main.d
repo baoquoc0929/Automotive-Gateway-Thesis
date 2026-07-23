@@ -89,7 +89,7 @@ gateway_ecu\main.o: ../LWIP/Target/ethernetif.h
 gateway_ecu\main.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/tcpip.h
 gateway_ecu\main.o: ../Core/Inc/usart.h
 gateway_ecu\main.o: ../Core/Inc/gpio.h
-gateway_ecu\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+gateway_ecu\main.o: ..\Application\Inc\app_gateway.h
 gateway_ecu\main.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/udp.h
 gateway_ecu\main.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/ip.h
 gateway_ecu\main.o: ../Middlewares/Third_Party/LwIP/src/include/lwip/ip6.h

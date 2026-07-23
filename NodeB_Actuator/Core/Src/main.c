@@ -180,15 +180,15 @@ int main(void)
         case 1: /* CAUTION */
           HAL_GPIO_WritePin(LED_SAFETY_GPIO_Port, LED_SAFETY_Pin, GPIO_PIN_SET);
           HAL_GPIO_WritePin(LED_WARNING_GPIO_Port, LED_WARNING_Pin, GPIO_PIN_SET);
-          buzzer_interval = 500;                              
+          buzzer_interval = 1000;                              
           break;
         case 2: /* WARNING */
           HAL_GPIO_WritePin(LED_WARNING_GPIO_Port, LED_WARNING_Pin, GPIO_PIN_SET);
-          buzzer_interval = 200;                              
+          buzzer_interval = 500;                              
           break;
         case 3: /* DANGER */
           HAL_GPIO_WritePin(LED_WARNING_GPIO_Port, LED_WARNING_Pin, GPIO_PIN_SET);
-          buzzer_interval = 1;                                
+          buzzer_interval = 200;                                
           break;
       }
     }

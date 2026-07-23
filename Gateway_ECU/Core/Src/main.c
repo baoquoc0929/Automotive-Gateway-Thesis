@@ -27,8 +27,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>     /* Required for printf and sprintf */
-#include <string.h>    /* Required for strlen */
-#include "lwip/udp.h"  /* Required for UDP functions */
+#include <app_gateway.h>  /* Required for gateway routing functions */
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -38,21 +37,8 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-/* Network Configuration */
-#define PC_DEST_IP_0            (192)
-#define PC_DEST_IP_1            (168)
-#define PC_DEST_IP_2            (1)
-#define PC_DEST_IP_3            (100)
-#define GATEWAY_UDP_PORT        (8080)
-
-/* CAN Protocol IDs */
-#define CAN_ID_NODE_A_RX        (0x250)
-#define CAN_ID_GATEWAY_APP_TX   (0x450)
-#define CAN_ID_GATEWAY_UDS_TX   (0x7E0)
-#define CAN_ID_NODE_B_UDS_RX    (0x7E8)
-
-/* Event Flags */
 #define EVT_UDS_RX_BIT   0x00000001U
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -78,25 +64,13 @@ uint8_t             RxData[8];              /**< CAN Rx payload data array */
 /* UDS Diagnostic Protocol Variables */
 uint8_t             gateway_uds_level = 0;  /**< Extracted UDS response payload */
 
-/* Telemetry & System Logic Variables */
-uint16_t            current_distance = 0;   /**< Distance received from Node A (cm) */
-WarningLevel_t      current_level;          /**< Calculated warning level (0:Safe -> 3:Danger) */
-uint8_t             previous_level = 255;   /**< Memory to detect level changes (255 = init) */
-
-uint8_t             control_mode = 0;       /**< 0: AUTO (Sensor), 1: MANUAL (PC-based) */
-uint32_t            last_manual_time = 0;   /**< Timestamp of last received PC command */
-const uint32_t      MANUAL_TIMEOUT = 5000;  /**< 5 seconds safety timeout for manual mode */
-
-/* UART Debugging Buffer */
-char                uart_buf[250];          /**< Buffer for UART transmission */
+/* Timestamps for latency measurement */
+volatile uint32_t   can_sensor_start_time = 0; 
+volatile uint32_t   can_uds_start_time = 0;
 
 /* External Variables */
 extern osMessageQueueId_t CAN_Data_QueueHandle;
-
-extern osEventFlagsId_t UdsEventFlagsHandle;
-
-volatile uint32_t can_sensor_start_time;    // Timestamp for CAN message from Node A (Sensor)
-volatile uint32_t can_uds_start_time;       // Timestamp for UDS response from Node B
+extern osEventFlagsId_t   UdsEventFlagsHandle;
 
 /* USER CODE END PV */
 
@@ -112,63 +86,10 @@ void MX_FREERTOS_Init(void);
  */
 PUTCHAR_PROTOTYPE;
 
-/* Private function prototypes */
-/**
- * @brief  Initializes the UDP receiver for Gateway.
- */
-void Gateway_UDP_Receiver_Init(void);
-
-/**
- * @brief  Sends distance telemetry over UDP to the PC.
- * @param[in] dist_cm Distance value in centimeters.
- */
-void Gateway_Send_UDP(uint16_t dist_cm);
-
-/**
- * @brief  Formats and sends the UDS acknowledgment level via UDP to the PC.
- * @param[in] level The UDS response level received from Node B.
- */
-void Gateway_Send_UDS_UDP(uint8_t level);
-
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
-uint16_t filtered_distance = 0; /**< Filtered distance state for moving average */
-
-/**
- * @brief  Determine warning level using a smoothed distance value.
- * @param[in] dist Raw distance in cm from sensor.
- */
-void Handle_Distance(uint16_t dist)
-{
-  /* Moving average filter: Retain 70% of previous value, blend with 30% new value */
-  if(filtered_distance == 0)
-  {
-    filtered_distance = dist; 
-  }
-  
-  filtered_distance = (filtered_distance * 7 + dist * 3) / 10;
-
-  /* Evaluate safety level using the filtered data */
-  if(filtered_distance > 0 && filtered_distance <= 20)
-  {
-    current_level = LEVEL_DANGER;
-  }
-  else if(filtered_distance > 20 && filtered_distance <= 50) 
-  {
-    current_level = LEVEL_WARNING;
-  }
-  else if(filtered_distance > 50 && filtered_distance <= 100)
-  {
-    current_level = LEVEL_CAUTION;
-  }
-  else
-  {
-    current_level = LEVEL_SAFE;
-  }
-}
 
 /* USER CODE END 0 */
 
@@ -331,60 +252,6 @@ PUTCHAR_PROTOTYPE
 }
 
 /**
- * @brief  Helper function to send a raw string via UDP.
- *
- * @param[in]  msg_string  Pointer to the null-terminated string to send.
- *
- * @return None
- */
-void UDP_Send_String(const char *msg_string)
-{
-  struct udp_pcb *upcb = udp_new();
-  if (upcb != NULL)
-  {
-    ip_addr_t DestIPaddr;
-    IP4_ADDR(&DestIPaddr, PC_DEST_IP_0, PC_DEST_IP_1, PC_DEST_IP_2, PC_DEST_IP_3); 
-
-    struct pbuf *p = pbuf_alloc(PBUF_TRANSPORT, strlen(msg_string), PBUF_RAM);  
-    if (p != NULL)
-    {
-      pbuf_take(p, msg_string, strlen(msg_string));
-      udp_sendto(upcb, p, &DestIPaddr, GATEWAY_UDP_PORT);
-      pbuf_free(p);
-    }
-    udp_remove(upcb); 
-  }
-}
-
-/**
- * @brief  Formats and sends the distance telemetry via UDP to the PC.
- *
- * @param[in]  dist_cm  Distance value in centimeters.
- *
- * @return None
- */
-void Gateway_Send_UDP(uint16_t dist_cm)
-{
-  char msg_buffer[50];
-  sprintf(msg_buffer, "Dist: %d cm\r\n", dist_cm);
-  UDP_Send_String(msg_buffer);
-}
-
-/**
- * @brief  Formats and sends the UDS acknowledgment level via UDP to the PC.
- *
- * @param[in]  level  The UDS response level received from Node B.
- *
- * @return None
- */
-void Gateway_Send_UDS_UDP(uint8_t level)
-{
-  char msg_buffer[50];
-  sprintf(msg_buffer, "UDS_ACK:%d\r\n", level); 
-  UDP_Send_String(msg_buffer);
-}
-
-/**
  * @brief  CAN RX Callback - Triggered when a new message arrives in FIFO0.
  *
  * @param[in]  hcan  Pointer to a CAN_HandleTypeDef structure that contains
@@ -417,94 +284,6 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
       /* Extract UDS response level from CAN payload (1 byte) */
       osEventFlagsSet(UdsEventFlagsHandle, EVT_UDS_RX_BIT);
       gateway_uds_level = RxData[1]; 
-    }
-  }
-}
-
-/**
- * @brief  LwIP UDP RX Callback - Triggered when a PC command arrives via Ethernet.
- *
- * @param[in]  arg   User supplied argument (not used).
- * @param[in]  upcb  The UDP protocol control block.
- * @param[in]  p     The packet buffer containing the received data.
- * @param[in]  addr  The IP address of the sender.
- * @param[in]  port  The port number of the sender.
- *
- * @attention  Must call pbuf_free(p) at the end to prevent memory leaks in LwIP.
- *
- * @return None
- */
-void udp_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, const ip_addr_t *addr, u16_t port)
-{
-  if (p != NULL)
-  {
-    uint8_t *payload = (uint8_t *)p->payload;
-    uint8_t received_char = payload[0];
-        
-    /* Branch 1: MANUAL Mode Control ('0'-'3') */
-    if (received_char >= '0' && received_char <= '3') 
-    {
-      control_mode = 1; 
-      last_manual_time = HAL_GetTick(); 
-            
-      TxHeader.StdId = CAN_ID_GATEWAY_APP_TX;
-      TxHeader.DLC = 1;
-      TxData[0] = received_char - '0';
-      
-      if (HAL_CAN_GetTxMailboxesFreeLevel(&hcan1) == 0) {
-          HAL_CAN_AbortTxRequest(&hcan1, CAN_TX_MAILBOX0 | CAN_TX_MAILBOX1 | CAN_TX_MAILBOX2);
-      }
-      HAL_CAN_AddTxMessage(&hcan1, &TxHeader, TxData, &TxMailbox);
-    }
-    /* Branch 2: Restore AUTO Mode ('A' or 'a') */
-    else if (received_char == 'A' || received_char == 'a')
-    {
-      control_mode = 0;
-      previous_level = 255; 
-    }
-    /* Branch 3: DoIP Request Decoder (Ver 0x02, Inv 0xFD, Type 0x80 0x01) */
-    else if (p->len >= 10 && payload[0] == 0x02 && payload[1] == 0xFD && payload[2] == 0x80 && payload[3] == 0x01)
-    {
-      uint8_t uds_service = payload[8];
-      uint8_t uds_subfunc = payload[9];
-
-      TxHeader.StdId = CAN_ID_GATEWAY_UDS_TX; 
-      TxHeader.DLC = 8;
-      
-      TxData[0] = 0x02;        
-      TxData[1] = uds_service; 
-      TxData[2] = uds_subfunc; 
-      TxData[3] = 0x55;        
-      TxData[4] = 0x55; 
-      TxData[5] = 0x55; 
-      TxData[6] = 0x55; 
-      TxData[7] = 0x55;
-
-      if (HAL_CAN_GetTxMailboxesFreeLevel(&hcan1) == 0) {
-          HAL_CAN_AbortTxRequest(&hcan1, CAN_TX_MAILBOX0 | CAN_TX_MAILBOX1 | CAN_TX_MAILBOX2);
-      }
-      HAL_CAN_AddTxMessage(&hcan1, &TxHeader, TxData, &TxMailbox);
-      
-      printf("\r\n[GATEWAY] GIAI MA DoIP THANH CONG! Phat UDS %02X %02X xuong Node B.\r\n", uds_service, uds_subfunc);
-    }
-
-    pbuf_free(p); 
-  }
-}
-
-/**
- * @brief  Initializes the UDP Listener for incoming PC commands.
- *
- * @return None
- */
-void Gateway_UDP_Receiver_Init(void)
-{
-  struct udp_pcb *upcb = udp_new();
-  if (upcb != NULL)
-  {
-    if (udp_bind(upcb, IP_ADDR_ANY, GATEWAY_UDP_PORT) == ERR_OK)
-    {
-      udp_recv(upcb, udp_receive_callback, NULL);
     }
   }
 }
