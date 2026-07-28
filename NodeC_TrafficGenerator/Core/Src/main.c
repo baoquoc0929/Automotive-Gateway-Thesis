@@ -122,8 +122,6 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-//		HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-//		HAL_Delay(500);
 		
 		/* 1. Setup the highest priority junk frame */
     TxHeader.StdId = 0x001; 
@@ -131,38 +129,40 @@ int main(void)
 
     if (HAL_CAN_GetTxMailboxesFreeLevel(&hcan) > 0)
     {
-        if (HAL_CAN_AddTxMessage(&hcan, &TxHeader, JunkData, &TxMailbox) == HAL_OK)
-        {
-            msg_sent_count++;
-        }
-        else 
-        {
-            error_count++;
-        }
+      if (HAL_CAN_AddTxMessage(&hcan, &TxHeader, JunkData, &TxMailbox) == HAL_OK)
+      {
+        msg_sent_count++;
+      }
+      else 
+      {
+        error_count++;
+      }
     }
     else
     {
-        error_count++;
+      error_count++;
     }
+		
+		HAL_Delay(1);
 
     /* Print to UART and Toggle LED every 1000ms (1 second) */
     if (HAL_GetTick() - last_debug_time >= 1000)
     {
-        last_debug_time = HAL_GetTick();
+      last_debug_time = HAL_GetTick();
         
-        /* Calculate messages sent IN THE LAST 1 SECOND */
-        uint32_t pkts_per_sec = msg_sent_count - last_sent_count;
+      /* Calculate messages sent IN THE LAST 1 SECOND */
+      uint32_t pkts_per_sec = msg_sent_count - last_sent_count;
         
-        printf("STRESS TEST -> Speed: %lu pkts/sec | Mailbox Busy: %lu times\r\n", 
-              (unsigned long)pkts_per_sec, (unsigned long)error_count);
+      printf("STRESS TEST -> Speed: %lu pkts/sec | Mailbox Busy: %lu times\r\n", 
+            (unsigned long)pkts_per_sec, (unsigned long)error_count);
 
-        /* Update the baseline for the next second calculation */
-        last_sent_count = msg_sent_count;
+      /* Update the baseline for the next second calculation */
+      last_sent_count = msg_sent_count;
         
-        /* Reset error_count to see busy times per second (Optional but recommended) */
-        error_count = 0; 
+      /* Reset error_count to see busy times per second (Optional but recommended) */
+      error_count = 0; 
 
-        HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13); 
+      HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13); 
     }
 		
   }
