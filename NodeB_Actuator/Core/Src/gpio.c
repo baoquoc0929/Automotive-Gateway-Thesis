@@ -50,24 +50,24 @@ void MX_GPIO_Init(void)
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, LED_WORKING_Pin|LED_WARNING_Pin|LED_SAFETY_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, LED_WORKING_Pin|LED_CAUTION_Pin|LED_SAFE_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, BUZZER_Pin|LED_DANGER_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : LED_WORKING_Pin LED_WARNING_Pin LED_SAFETY_Pin */
-  GPIO_InitStruct.Pin = LED_WORKING_Pin|LED_WARNING_Pin|LED_SAFETY_Pin;
+  /*Configure GPIO pins : LED_WORKING_Pin LED_CAUTION_Pin LED_SAFE_Pin */
+  GPIO_InitStruct.Pin = LED_WORKING_Pin|LED_CAUTION_Pin|LED_SAFE_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : BUZZER_Pin */
-  GPIO_InitStruct.Pin = BUZZER_Pin;
+  /*Configure GPIO pins : BUZZER_Pin LED_DANGER_Pin */
+  GPIO_InitStruct.Pin = BUZZER_Pin|LED_DANGER_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(BUZZER_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
 }
 

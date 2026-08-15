@@ -166,7 +166,7 @@ void udp_receive_callback(void *arg, struct udp_pcb *upcb, struct pbuf *p, const
 
         if (request_did == DID_ACTUATOR_CONTROL) 
         {
-           if (control_option == UDS_IO_RETURN_CONTROL) /* Replaces legacy 'A' or 'a' character reception */
+           if (control_option == UDS_IO_RETURN_CONTROL)
            {
              control_mode = 0;
              previous_level = 255;

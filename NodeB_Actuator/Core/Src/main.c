@@ -51,6 +51,7 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+
 /* USER CODE BEGIN PV */
 CAN_RxHeaderTypeDef RxHeader;             /**< CAN Rx header structure */
 uint8_t             RxData[8];            /**< CAN Rx payload data array */
@@ -116,8 +117,7 @@ int main(void)
   MX_CAN_Init();
   MX_USART1_UART_Init();
   MX_TIM2_Init();
-	
-	/* USER CODE BEGIN 2 */
+  /* USER CODE BEGIN 2 */
   CAN_FilterTypeDef canfilterconfig;
 
   canfilterconfig.FilterBank = 0;
@@ -154,40 +154,68 @@ int main(void)
   /* USER CODE END 2 */
 
   /* Infinite loop */
-	/* USER CODE BEGIN WHILE */
+  /* USER CODE BEGIN WHILE */
   
   /* Diagnostic override timer for UDS 0x2F command */
   uint32_t buzzer_test_timeout = 0; 
 
   while (1)
   {
-		/* USER CODE END WHILE */
+    /* USER CODE END WHILE */
 
-		/* USER CODE BEGIN 3 */
+    /* USER CODE BEGIN 3 */
     
     /* --- STEP 1: PROCESS APPLICATION COMMANDS --- */
-    if (new_command_flag)
+//    if (new_command_flag)
+//    {
+//      new_command_flag = 0; 
+//      HAL_GPIO_WritePin(LED_WORKING_GPIO_Port, LED_CAUTION_Pin | LED_SAFE_Pin, GPIO_PIN_RESET);
+
+//      switch (cmd_warning_level)
+//      {
+//        case 0: /* SAFE */
+//          HAL_GPIO_WritePin(LED_SAFE_GPIO_Port, LED_SAFE_Pin, GPIO_PIN_SET);
+//          buzzer_interval = 0;                                
+//          break;
+//        case 1: /* CAUTION */
+//          HAL_GPIO_WritePin(LED_SAFE_GPIO_Port, LED_SAFE_Pin, GPIO_PIN_SET);
+//          HAL_GPIO_WritePin(LED_CAUTION_GPIO_Port, LED_CAUTION_Pin, GPIO_PIN_SET);
+//          buzzer_interval = 1000;                              
+//          break;
+//        case 2: /* WARNING */
+//          HAL_GPIO_WritePin(LED_CAUTION_GPIO_Port, LED_CAUTION_Pin, GPIO_PIN_SET);
+//          buzzer_interval = 500;                              
+//          break;
+//        case 3: /* DANGER */
+//          HAL_GPIO_WritePin(LED_CAUTION_GPIO_Port, LED_CAUTION_Pin, GPIO_PIN_SET);
+//          buzzer_interval = 200;                                
+//          break;
+//      }
+//    }
+		
+		if (new_command_flag)
     {
       new_command_flag = 0; 
-      HAL_GPIO_WritePin(LED_WORKING_GPIO_Port, LED_WARNING_Pin | LED_SAFETY_Pin, GPIO_PIN_RESET);
+      HAL_GPIO_WritePin(LED_CAUTION_GPIO_Port, LED_CAUTION_Pin | LED_SAFE_Pin, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(LED_DANGER_GPIO_Port, LED_DANGER_Pin, GPIO_PIN_RESET);
 
       switch (cmd_warning_level)
       {
         case 0: /* SAFE */
-          HAL_GPIO_WritePin(LED_SAFETY_GPIO_Port, LED_SAFETY_Pin, GPIO_PIN_SET);
+          HAL_GPIO_WritePin(LED_SAFE_GPIO_Port, LED_SAFE_Pin, GPIO_PIN_SET);
           buzzer_interval = 0;                                
           break;
         case 1: /* CAUTION */
-          HAL_GPIO_WritePin(LED_SAFETY_GPIO_Port, LED_SAFETY_Pin, GPIO_PIN_SET);
-          HAL_GPIO_WritePin(LED_WARNING_GPIO_Port, LED_WARNING_Pin, GPIO_PIN_SET);
+					HAL_GPIO_WritePin(LED_SAFE_GPIO_Port, LED_SAFE_Pin, GPIO_PIN_SET);
+          HAL_GPIO_WritePin(LED_CAUTION_GPIO_Port, LED_CAUTION_Pin, GPIO_PIN_SET);
           buzzer_interval = 1000;                              
           break;
         case 2: /* WARNING */
-          HAL_GPIO_WritePin(LED_WARNING_GPIO_Port, LED_WARNING_Pin, GPIO_PIN_SET);
+          HAL_GPIO_WritePin(LED_CAUTION_GPIO_Port, LED_CAUTION_Pin, GPIO_PIN_SET);
           buzzer_interval = 500;                              
           break;
         case 3: /* DANGER */
-          HAL_GPIO_WritePin(LED_WARNING_GPIO_Port, LED_WARNING_Pin, GPIO_PIN_SET);
+          HAL_GPIO_WritePin(LED_DANGER_GPIO_Port, LED_DANGER_Pin, GPIO_PIN_SET);
           buzzer_interval = 200;                                
           break;
       }
@@ -342,28 +370,6 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 }
 
 /* USER CODE END 4 */
-
-/**
-  * @brief  Period elapsed callback in non blocking mode
-  * @note   This function is called  when TIM1 interrupt took place, inside
-  * HAL_TIM_IRQHandler(). It makes a direct call to HAL_IncTick() to increment
-  * a global variable "uwTick" used as application time base.
-  * @param  htim : TIM handle
-  * @retval None
-  */
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
-  /* USER CODE BEGIN Callback 0 */
-
-  /* USER CODE END Callback 0 */
-  if (htim->Instance == TIM1)
-  {
-    HAL_IncTick();
-  }
-  /* USER CODE BEGIN Callback 1 */
-
-  /* USER CODE END Callback 1 */
-}
 
 /**
   * @brief  This function is executed in case of error occurrence.

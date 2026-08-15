@@ -179,9 +179,9 @@ class GatewayThesisApp(ctk.CTk):
         uds_payload = bytearray([0x11, 0x01])
         self.transmit_doip(uds_payload)
 
-    def send_uds_io_control(self):
-        uds_payload = bytearray([0x2F, 0x01, 0x01, 0x03])
-        self.transmit_doip(uds_payload)
+    # def send_uds_io_control(self):
+    #     uds_payload = bytearray([0x2F, 0x01, 0x01, 0x03])
+    #     self.transmit_doip(uds_payload)
 
     def send_uds_read_data(self):
         uds_payload = bytearray([0x22, 0x01, 0x01])
